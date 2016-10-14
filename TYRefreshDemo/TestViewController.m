@@ -34,7 +34,6 @@
 {
     [super viewWillLayoutSubviews];
     _tableView.frame = self.view.bounds;
-//    _tableView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
 }
 
 - (void)addTableView
