@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TestViewController.h"
 
 @interface ViewController ()
 
@@ -18,7 +19,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+- (IBAction)normalRefreshAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    [self.navigationController pushViewController:testVC animated:YES];
+}
 
+- (IBAction)gifRefreshAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.isGifRefresh = YES;
+    [self.navigationController pushViewController:testVC animated:YES];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

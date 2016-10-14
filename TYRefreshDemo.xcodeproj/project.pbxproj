@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3302531DAF33C3005FD95B /* TYGifAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3302521DAF33C3005FD95B /* TYGifAnimatorView.m */; };
+		2B379B051DAB71FE00F5E4EF /* TYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B379B041DAB71FE00F5E4EF /* TYRefreshView.m */; };
+		2B3FA1D11DAB88410019EF83 /* UIScrollView+TYRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FA1D01DAB88410019EF83 /* UIScrollView+TYRefresh.m */; };
+		2B58E72E1DADE04200393C3B /* TYAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58E72D1DADE04200393C3B /* TYAnimatorView.m */; };
+		2B58E7311DADE20500393C3B /* refresh_arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B58E7301DADE20500393C3B /* refresh_arrow_down@2x.png */; };
 		2B73E3731DA8DA8A00F05D68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73E3721DA8DA8A00F05D68 /* main.m */; };
 		2B73E3761DA8DA8A00F05D68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73E3751DA8DA8A00F05D68 /* AppDelegate.m */; };
 		2B73E3791DA8DA8A00F05D68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73E3781DA8DA8A00F05D68 /* ViewController.m */; };
@@ -14,6 +19,7 @@
 		2B73E37E1DA8DA8A00F05D68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B73E37D1DA8DA8A00F05D68 /* Assets.xcassets */; };
 		2B73E3811DA8DA8A00F05D68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B73E37F1DA8DA8A00F05D68 /* LaunchScreen.storyboard */; };
 		2B73E38C1DA8DA8A00F05D68 /* TYRefreshDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73E38B1DA8DA8A00F05D68 /* TYRefreshDemoTests.m */; };
+		2BEF03181DAE3EE900D8A75D /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF03171DAE3EE900D8A75D /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +33,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B3302511DAF33C3005FD95B /* TYGifAnimatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYGifAnimatorView.h; sourceTree = "<group>"; };
+		2B3302521DAF33C3005FD95B /* TYGifAnimatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYGifAnimatorView.m; sourceTree = "<group>"; };
+		2B379B031DAB71FE00F5E4EF /* TYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYRefreshView.h; sourceTree = "<group>"; };
+		2B379B041DAB71FE00F5E4EF /* TYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYRefreshView.m; sourceTree = "<group>"; };
+		2B3FA1CF1DAB88410019EF83 /* UIScrollView+TYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TYRefresh.h"; sourceTree = "<group>"; };
+		2B3FA1D01DAB88410019EF83 /* UIScrollView+TYRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TYRefresh.m"; sourceTree = "<group>"; };
+		2B58E72C1DADE04200393C3B /* TYAnimatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAnimatorView.h; sourceTree = "<group>"; };
+		2B58E72D1DADE04200393C3B /* TYAnimatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAnimatorView.m; sourceTree = "<group>"; };
+		2B58E7301DADE20500393C3B /* refresh_arrow_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh_arrow_down@2x.png"; sourceTree = "<group>"; };
 		2B73E36E1DA8DA8A00F05D68 /* TYRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B73E3721DA8DA8A00F05D68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B73E3741DA8DA8A00F05D68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,6 +55,8 @@
 		2B73E3871DA8DA8A00F05D68 /* TYRefreshDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TYRefreshDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B73E38B1DA8DA8A00F05D68 /* TYRefreshDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TYRefreshDemoTests.m; sourceTree = "<group>"; };
 		2B73E38D1DA8DA8A00F05D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BEF03161DAE3EE900D8A75D /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		2BEF03171DAE3EE900D8A75D /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B58E72F1DADE1F400393C3B /* image */ = {
+			isa = PBXGroup;
+			children = (
+				2B58E7301DADE20500393C3B /* refresh_arrow_down@2x.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
 		2B73E3651DA8DA8A00F05D68 = {
 			isa = PBXGroup;
 			children = (
@@ -81,10 +106,13 @@
 		2B73E3701DA8DA8A00F05D68 /* TYRefreshDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B73E3961DA8DAB000F05D68 /* TYRefresh */,
 				2B73E3741DA8DA8A00F05D68 /* AppDelegate.h */,
 				2B73E3751DA8DA8A00F05D68 /* AppDelegate.m */,
 				2B73E3771DA8DA8A00F05D68 /* ViewController.h */,
 				2B73E3781DA8DA8A00F05D68 /* ViewController.m */,
+				2BEF03161DAE3EE900D8A75D /* TestViewController.h */,
+				2BEF03171DAE3EE900D8A75D /* TestViewController.m */,
 				2B73E37A1DA8DA8A00F05D68 /* Main.storyboard */,
 				2B73E37D1DA8DA8A00F05D68 /* Assets.xcassets */,
 				2B73E37F1DA8DA8A00F05D68 /* LaunchScreen.storyboard */,
@@ -109,6 +137,22 @@
 				2B73E38D1DA8DA8A00F05D68 /* Info.plist */,
 			);
 			path = TYRefreshDemoTests;
+			sourceTree = "<group>";
+		};
+		2B73E3961DA8DAB000F05D68 /* TYRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				2B379B031DAB71FE00F5E4EF /* TYRefreshView.h */,
+				2B379B041DAB71FE00F5E4EF /* TYRefreshView.m */,
+				2B3FA1CF1DAB88410019EF83 /* UIScrollView+TYRefresh.h */,
+				2B3FA1D01DAB88410019EF83 /* UIScrollView+TYRefresh.m */,
+				2B58E72C1DADE04200393C3B /* TYAnimatorView.h */,
+				2B58E72D1DADE04200393C3B /* TYAnimatorView.m */,
+				2B3302511DAF33C3005FD95B /* TYGifAnimatorView.h */,
+				2B3302521DAF33C3005FD95B /* TYGifAnimatorView.m */,
+				2B58E72F1DADE1F400393C3B /* image */,
+			);
+			path = TYRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +204,7 @@
 				TargetAttributes = {
 					2B73E36D1DA8DA8A00F05D68 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZW52Q3KXX4;
 						ProvisioningStyle = Automatic;
 					};
 					2B73E3861DA8DA8A00F05D68 = {
@@ -193,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B58E7311DADE20500393C3B /* refresh_arrow_down@2x.png in Resources */,
 				2B73E3811DA8DA8A00F05D68 /* LaunchScreen.storyboard in Resources */,
 				2B73E37E1DA8DA8A00F05D68 /* Assets.xcassets in Resources */,
 				2B73E37C1DA8DA8A00F05D68 /* Main.storyboard in Resources */,
@@ -213,9 +259,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B58E72E1DADE04200393C3B /* TYAnimatorView.m in Sources */,
 				2B73E3791DA8DA8A00F05D68 /* ViewController.m in Sources */,
+				2BEF03181DAE3EE900D8A75D /* TestViewController.m in Sources */,
+				2B379B051DAB71FE00F5E4EF /* TYRefreshView.m in Sources */,
 				2B73E3761DA8DA8A00F05D68 /* AppDelegate.m in Sources */,
+				2B3FA1D11DAB88410019EF83 /* UIScrollView+TYRefresh.m in Sources */,
 				2B73E3731DA8DA8A00F05D68 /* main.m in Sources */,
+				2B3302531DAF33C3005FD95B /* TYGifAnimatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZW52Q3KXX4;
 				INFOPLIST_FILE = TYRefreshDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tany.TYRefreshDemo;
@@ -362,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZW52Q3KXX4;
 				INFOPLIST_FILE = TYRefreshDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tany.TYRefreshDemo;
@@ -412,6 +465,7 @@
 				2B73E3921DA8DA8A00F05D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B73E3931DA8DA8A00F05D68 /* Build configuration list for PBXNativeTarget "TYRefreshDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +474,7 @@
 				2B73E3951DA8DA8A00F05D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
