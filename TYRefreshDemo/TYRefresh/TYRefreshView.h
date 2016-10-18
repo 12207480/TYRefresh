@@ -84,8 +84,6 @@ typedef void(^TYRefresHandler)(void);
 
 @property (nonatomic, assign) BOOL adjustOriginleftContentInset; // default NO
 
-@property (nonatomic, assign) BOOL adjustOriginTopContentInset; // default YES
-
 #pragma mark - init
 
 - (instancetype)initWithHeight:(CGFloat)height type:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;

@@ -49,7 +49,6 @@
 - (TYGifAnimatorView *)gifAnimatorView
 {
     TYGifAnimatorView *gifAnimatorView = [TYGifAnimatorView new];
-    
     // 最好在 initialize 做成static 复用
     NSMutableArray *pullingImages = [NSMutableArray array];
     for (int i = 0; i< 60; ++i) {

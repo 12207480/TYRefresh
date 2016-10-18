@@ -44,7 +44,6 @@ static char kTYRefreshContentKey;
     if (self = [super init]) {
         _beginAnimateDuring = 0.25;
         _endAnimateDuring = 0.25;
-        _adjustOriginTopContentInset = YES;
         _adjustOriginleftContentInset = NO;
     }
     return self;
@@ -82,6 +81,10 @@ static char kTYRefreshContentKey;
 
 - (void)setState:(TYRefreshState)state
 {
+    if (state == TYRefreshStateNormal) {
+        self.hidden = _isAutomaticHidden;
+    }
+
     if (_state != state) {
         TYRefreshState oldState = _state;
         _state = state;

@@ -29,6 +29,14 @@
 
 @implementation TYHeaderRefresh
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _adjustViewControllerTopContentInset = YES;
+    }
+    return self;
+}
+
 + (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler
 {
     return [[self alloc]initWithType:TYRefreshTypeHeader animator:animator handler:handler];
@@ -47,9 +55,10 @@
 - (void)adjsutFrameToScrollView:(UIScrollView *)scrollView
 {
     CGFloat originleftContentInset = self.adjustOriginleftContentInset ? -self.scrollViewOrignContenInset.left : 0;
-    CGFloat adjustTopContentInset = self.adjustOriginTopContentInset ? [self adjustsViewControllerScrollViewTopInset:scrollView] : 0;
+    CGFloat adjustViewControllerTopContentInset = _adjustViewControllerTopContentInset ? [self adjustsViewControllerScrollViewTopInset:scrollView] : 0;
+    CGFloat topContentInset = -self.refreshHeight - self.scrollViewOrignContenInset.top + adjustViewControllerTopContentInset;
     self.frame = CGRectMake(originleftContentInset,
-                                -self.refreshHeight-self.scrollViewOrignContenInset.top+adjustTopContentInset,
+                                topContentInset,
                                 CGRectGetWidth(scrollView.bounds),
                                 self.refreshHeight);
 

@@ -169,6 +169,17 @@
             }
             break;
         }
+        case TYRefreshStateNormal:
+        {
+            if (_imageView.isAnimating) {
+                [_imageView stopAnimating];
+            }
+            NSArray *pullingImages = [self gifImagesForState:TYRefreshStatePulling];
+            if (pullingImages.count > 0) {
+                _imageView.image = pullingImages.firstObject;
+            }
+        }
+            break;
         default:
             break;
     }
