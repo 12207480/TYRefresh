@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TYRefreshView.h"
+#import "TYHeaderRefresh.h"
+#import "TYFooterRefresh.h"
 #import "TYAnimatorView.h"
 #import "TYGifAnimatorView.h"
 

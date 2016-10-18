@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
 - (void)addImageView
 {
     UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.image = [UIImage imageNamed:@"refresh_arrow_down"];
+    imageView.image = [UIImage imageNamed:@"TYRefresh.bundle/arrow_down"];
     [self addSubview:imageView];
     _imageView = imageView;
 }

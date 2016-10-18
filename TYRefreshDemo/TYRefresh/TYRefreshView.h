@@ -28,6 +28,15 @@ typedef NS_ENUM(NSUInteger, TYRefreshType) {
     TYRefreshTypeFooter,
 };
 
+// 主线程执行
+NS_INLINE void dispatch_main_async_safe_ty_refresh(dispatch_block_t block) {
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
+}
+
 typedef void(^TYRefresHandler)(void);
 @class TYRefreshView;
 
@@ -59,6 +68,14 @@ typedef void(^TYRefresHandler)(void);
 
 @property (nonatomic, assign, readonly) CGFloat refreshHeight;
 
+@property (nonatomic, assign, readonly) UIEdgeInsets scrollViewOrignContenInset;
+
+@property (nonatomic, assign, readonly) BOOL isRefreshing;
+
+@property (nonatomic, assign, readonly) BOOL isEndRefreshAnimating;
+
+@property (nonatomic, assign, readonly) BOOL isPanGestureBegin;
+
 @property (nonatomic, assign) CGFloat beginAnimateDuring;
 
 @property (nonatomic, assign) CGFloat endAnimateDuring;
@@ -75,11 +92,24 @@ typedef void(^TYRefresHandler)(void);
 
 - (instancetype)initWithType:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler; // height = animator's height
 
-+ (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
 
-+ (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
+#pragma mark - super scrollView
 
-#pragma mark - refresh action
+- (UIScrollView *)superScrollView;
+
+#pragma mark - configure scrollView
+
+- (void)configureScrollView:(UIScrollView *)scrollView;
+
+#pragma mark - observe scrollView
+
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change;
+
+- (void)scrollViewContentSizeDidChange:(NSDictionary *)change;
+
+- (void)refreshViewDidChangeProgress:(CGFloat)progress;
+
+#pragma mark - refresh
 
 - (void)beginRefreshing;
 

@@ -27,7 +27,6 @@
     [self configureTableView];
     
     [self loadData];
-    
 }
 
 - (void)viewWillLayoutSubviews
@@ -47,13 +46,34 @@
     _tableView = tableView;
 }
 
+- (TYGifAnimatorView *)gifAnimatorView
+{
+    TYGifAnimatorView *gifAnimatorView = [TYGifAnimatorView new];
+    
+    // 最好在 initialize 做成static 复用
+    NSMutableArray *pullingImages = [NSMutableArray array];
+    for (int i = 0; i< 60; ++i) {
+        [pullingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%d",i+1]]];
+    }
+    [gifAnimatorView setGifImages:[pullingImages copy] forState:TYRefreshStatePulling];
+    
+    // 最好在 initialize 做成static 复用
+    NSMutableArray *loadingImages = [NSMutableArray array];
+    for (int i = 0; i< 3; ++i) {
+        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%d",i+1]]];
+    }
+    
+    [gifAnimatorView setGifImages:[loadingImages copy] forState:TYRefreshStateLoading];
+    return gifAnimatorView;
+}
+
 - (void)configureTableView
 {
     _tableView.contentInset = UIEdgeInsetsMake(20, 0, 60, 0);
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
     
     __weak typeof(self) weakSelf = self;
-    _tableView.ty_refreshHeader = [TYRefreshView headerWithAnimator:_isGifRefresh ?[TYGifAnimatorView new] : [TYAnimatorView new]  handler:^{
+    _tableView.ty_refreshHeader = [TYHeaderRefresh headerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new]  handler:^{
         NSLog(@"上拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadData];
@@ -62,7 +82,7 @@
         });
     }];
     
-    _tableView.ty_refreshFooter = [TYRefreshView footerWithAnimator:_isGifRefresh ?[TYGifAnimatorView new] : [TYAnimatorView new] handler:^{
+    _tableView.ty_refreshFooter = [TYFooterRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new] handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];

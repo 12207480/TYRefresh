@@ -116,18 +116,7 @@
 
 - (void)configureRefreshGifImages
 {
-    NSMutableArray *pullingImages = [NSMutableArray array];
-    for (int i = 0; i< 60; ++i) {
-        [pullingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%d",i+1]]];
-    }
-    [self setGifImages:[pullingImages copy] forState:TYRefreshStatePulling];
     
-    NSMutableArray *loadingImages = [NSMutableArray array];
-    for (int i = 0; i< 3; ++i) {
-        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%d",i+1]]];
-    }
-    
-    [self setGifImages:[loadingImages copy] forState:TYRefreshStateLoading];
 }
 
 #pragma mark - TYRefreshAnimator
