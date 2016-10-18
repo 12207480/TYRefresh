@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, TYRefreshState) {
+    TYRefreshStateNone,
     // 正常
     TYRefreshStateNormal,
     // 下拉或上拉
@@ -62,10 +63,6 @@ typedef void(^TYRefresHandler)(void);
 @property (nonatomic, assign, readonly) UIEdgeInsets scrollViewOrignContenInset;
 
 @property (nonatomic, assign, readonly) BOOL isRefreshing;
-
-@property (nonatomic, assign, readonly) BOOL isEndRefreshAnimating;
-
-@property (nonatomic, assign, readonly) BOOL isPanGestureBegin;
 
 @property (nonatomic, assign) CGFloat beginAnimateDuring;
 

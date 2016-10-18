@@ -108,6 +108,7 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
 - (void)configureRefreshTitleWithType:(TYRefreshType)type
 {
     // 默认
+    [self setTitle:type==TYRefreshTypeHeader ? @"下拉刷新" : @"上拉刷新" forState:TYRefreshStateNormal];
     [self setTitle:type==TYRefreshTypeHeader ? @"下拉刷新" : @"上拉刷新" forState:TYRefreshStatePulling];
     [self setTitle:@"加载中..." forState:TYRefreshStateLoading];
     [self setTitle: @"松开刷新" forState:TYRefreshStateRelease];

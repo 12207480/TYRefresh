@@ -10,6 +10,8 @@
 
 @interface TYHeaderRefresh : TYRefreshView
 
+@property (nonatomic, assign) BOOL adjustOriginTopContentInset; // default YES
+
 @property (nonatomic, assign) BOOL adjustViewControllerTopContentInset; // default YES
 
 + (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;

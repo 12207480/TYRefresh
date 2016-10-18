@@ -17,6 +17,15 @@
 
 @implementation TYFooterRefresh
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _adjustOriginBottomContentInset = YES;
+        _beginRefreshOffset = 0;
+    }
+    return self;
+}
+
 + (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler
 {
     return [[self alloc]initWithType:TYRefreshTypeFooter animator:animator handler:handler];
@@ -36,8 +45,9 @@
     CGFloat originleftContentInset = self.adjustOriginleftContentInset ? -self.scrollViewOrignContenInset.left : 0;
 
     CGFloat contentOnScreenHeight = CGRectGetHeight(scrollView.frame) - self.scrollViewOrignContenInset.top;
+    CGFloat bottomContentInset = MAX(scrollView.contentSize.height+self.scrollViewOrignContenInset.bottom, contentOnScreenHeight) - (_adjustOriginBottomContentInset ? 0 : self.scrollViewOrignContenInset.bottom);
     self.frame = CGRectMake(originleftContentInset,
-                                MAX(scrollView.contentSize.height+self.scrollViewOrignContenInset.bottom, contentOnScreenHeight),
+                                bottomContentInset,
                                 CGRectGetWidth(scrollView.bounds),
                                 self.refreshHeight);
 }
@@ -138,14 +148,16 @@
     if (scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.isPanGestureBegin = YES;
         // 刷新临界点 需要判断内容高度是否大于scrollView的高度
-        CGFloat willShowRefreshOffset = self.frame.origin.y - scrollView.frame.size.height;
-        _beginRefreshOffset =  willShowRefreshOffset > 0 ? willShowRefreshOffset : -self.scrollViewOrignContenInset.top;
+        CGFloat willPullRefreshOffsetY = self.frame.origin.y - scrollView.frame.size.height + (_adjustOriginBottomContentInset ? 0 :  self.scrollViewOrignContenInset.bottom);
+        _beginRefreshOffset =  willPullRefreshOffsetY > 0 ? willPullRefreshOffsetY : -self.scrollViewOrignContenInset.top;
         return;
     }
     
     if (!self.isPanGestureBegin) { // 没有拖拽
         return;
     }
+    
+    NSLog(@"beginRefreshOffset %.f contentInsetTop %.f",_beginRefreshOffset,scrollView.contentOffset.y);
     
     if (scrollView.contentOffset.y < _beginRefreshOffset) {
         // 还没到刷新点

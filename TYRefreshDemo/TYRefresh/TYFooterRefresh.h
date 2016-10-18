@@ -10,6 +10,8 @@
 
 @interface TYFooterRefresh : TYRefreshView
 
+@property (nonatomic, assign) BOOL adjustOriginBottomContentInset; // default YES
+
 + (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
 
 @end

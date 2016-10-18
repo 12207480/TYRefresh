@@ -45,6 +45,7 @@ static char kTYRefreshContentKey;
         _beginAnimateDuring = 0.25;
         _endAnimateDuring = 0.25;
         _adjustOriginleftContentInset = NO;
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -108,6 +109,8 @@ static char kTYRefreshContentKey;
     if ([_animator respondsToSelector:@selector(refreshViewDidPrepareRefresh:)]) {
         [_animator refreshViewDidPrepareRefresh:self];
     }
+    
+    self.state = TYRefreshStateNormal;
 }
 
 - (void)addConstraintWithView:(UIView *)view edgeInset:(UIEdgeInsets)edgeInset
@@ -191,7 +194,6 @@ static char kTYRefreshContentKey;
 - (void)refreshViewDidChangeProgress:(CGFloat)progress
 {
     if ([self superScrollView].isDragging) {
-        
         if (progress >= 1.0) {
             self.state = TYRefreshStateRelease;
         }else if (progress <= 0.0) {

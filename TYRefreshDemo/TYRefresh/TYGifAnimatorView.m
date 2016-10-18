@@ -107,6 +107,7 @@
 - (void)configureRefreshTitleWithType:(TYRefreshType)type
 {
     // 默认
+    [self setTitle:type==TYRefreshTypeHeader ? @"下拉刷新" : @"上拉刷新" forState:TYRefreshStateNormal];
     [self setTitle:type==TYRefreshTypeHeader ? @"下拉刷新" : @"上拉刷新" forState:TYRefreshStatePulling];
     [self setTitle:@"加载中..." forState:TYRefreshStateLoading];
     [self setTitle: @"松开刷新" forState:TYRefreshStateRelease];
@@ -129,11 +130,6 @@
     
     if (_gifImageDic.count == 0) {
         [self configureRefreshGifImages];
-    }
-    
-    NSArray *pullingImages = [self gifImagesForState:TYRefreshStatePulling];
-    if (pullingImages.count > 0) {
-        _imageView.image = pullingImages.firstObject;
     }
 }
 

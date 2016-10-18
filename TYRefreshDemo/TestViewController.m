@@ -68,7 +68,7 @@
 
 - (void)configureTableView
 {
-    _tableView.contentInset = UIEdgeInsetsMake(20, 0, 60, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(40, 0, 60, 0);
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
     
     __weak typeof(self) weakSelf = self;
@@ -114,6 +114,16 @@
 {
     return _testData.count;
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return @"headerView";
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 40;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

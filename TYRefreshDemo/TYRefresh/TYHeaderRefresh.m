@@ -19,6 +19,7 @@
 {
     if (self = [super init]) {
         _adjustViewControllerTopContentInset = YES;
+        _adjustOriginTopContentInset = YES;
     }
     return self;
 }
@@ -42,7 +43,8 @@
 {
     CGFloat originleftContentInset = self.adjustOriginleftContentInset ? -self.scrollViewOrignContenInset.left : 0;
     CGFloat adjustViewControllerTopContentInset = _adjustViewControllerTopContentInset ? [self adjustsViewControllerScrollViewTopInset:scrollView] : 0;
-    CGFloat topContentInset = -self.refreshHeight - self.scrollViewOrignContenInset.top + adjustViewControllerTopContentInset;
+    CGFloat topContentInset = -self.refreshHeight + (_adjustOriginTopContentInset ? -self.scrollViewOrignContenInset.top + adjustViewControllerTopContentInset : 0);
+    
     self.frame = CGRectMake(originleftContentInset,
                                 topContentInset,
                                 CGRectGetWidth(scrollView.bounds),
@@ -160,7 +162,7 @@
         // 结束动画
         return;
     }
-    
+    //NSLog(@"offsetY %.f contentTop %.f",scrollView.contentOffset.y,scrollView.contentInset.top);
     BOOL isChangeContentInsetTop = self.scrollViewOrignContenInset.top != scrollView.contentInset.top;
     self.scrollViewOrignContenInset = scrollView.contentInset;
     if (isChangeContentInsetTop) {
