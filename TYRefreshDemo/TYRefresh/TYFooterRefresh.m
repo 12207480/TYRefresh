@@ -7,20 +7,7 @@
 //
 
 #import "TYFooterRefresh.h"
-
-@interface TYRefreshView ()
-
-@property (nonatomic, assign) TYRefreshState state;
-
-@property (nonatomic, assign) BOOL isRefreshing;
-
-@property (nonatomic, assign) BOOL isEndRefreshAnimating;
-
-@property (nonatomic, assign) BOOL isPanGestureBegin;
-
-@property (nonatomic, assign) UIEdgeInsets scrollViewOrignContenInset;
-
-@end
+#import "TYRefreshView+TYPrivate.h"
 
 @interface TYFooterRefresh ()
 

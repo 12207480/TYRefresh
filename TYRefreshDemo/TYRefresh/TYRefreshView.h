@@ -28,15 +28,6 @@ typedef NS_ENUM(NSUInteger, TYRefreshType) {
     TYRefreshTypeFooter,
 };
 
-// 主线程执行
-NS_INLINE void dispatch_main_async_safe_ty_refresh(dispatch_block_t block) {
-    if ([NSThread isMainThread]) {
-        block();
-    } else {
-        dispatch_async(dispatch_get_main_queue(), block);
-    }
-}
-
 typedef void(^TYRefresHandler)(void);
 @class TYRefreshView;
 

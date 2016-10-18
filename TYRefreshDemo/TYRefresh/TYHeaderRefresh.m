@@ -7,25 +7,11 @@
 //
 
 #import "TYHeaderRefresh.h"
-
-@interface TYRefreshView ()
-
-@property (nonatomic, assign) TYRefreshState state;
-
-@property (nonatomic, assign) BOOL isRefreshing;
-
-@property (nonatomic, assign) BOOL isPanGestureBegin;
-
-@property (nonatomic, assign) BOOL isEndRefreshAnimating;
-
-@property (nonatomic, assign) UIEdgeInsets scrollViewOrignContenInset;
-
-@end
+#import "TYRefreshView+TYPrivate.h"
 
 @interface TYHeaderRefresh ()
 
 @end
-
 
 @implementation TYHeaderRefresh
 
@@ -61,7 +47,6 @@
                                 topContentInset,
                                 CGRectGetWidth(scrollView.bounds),
                                 self.refreshHeight);
-
 }
 
 - (CGFloat)adjustsViewControllerScrollViewTopInset:(UIScrollView *)scrollView
