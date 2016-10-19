@@ -7,7 +7,7 @@
 //
 
 #import "TYRefreshView.h"
-#import "TYRefreshView+TYPrivate.h"
+#import "TYRefreshView+Extension.h"
 
 // scrollView KVO
 static NSString *const kTYRefreshContentOffsetKey = @"contentOffset";

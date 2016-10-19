@@ -7,7 +7,7 @@
 //
 
 #import "TYHeaderRefresh.h"
-#import "TYRefreshView+TYPrivate.h"
+#import "TYRefreshView+Extension.h"
 
 @interface TYHeaderRefresh ()
 

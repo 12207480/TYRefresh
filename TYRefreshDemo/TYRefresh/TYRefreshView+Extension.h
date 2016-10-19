@@ -1,5 +1,5 @@
 //
-//  TYRefreshView+private.h
+//  TYRefreshView+Extension.h
 //  TYRefreshDemo
 //
 //  Created by tany on 16/10/18.

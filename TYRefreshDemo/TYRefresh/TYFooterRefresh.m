@@ -7,7 +7,7 @@
 //
 
 #import "TYFooterRefresh.h"
-#import "TYRefreshView+TYPrivate.h"
+#import "TYRefreshView+Extension.h"
 
 @interface TYFooterRefresh ()
 
