@@ -157,7 +157,7 @@
         return;
     }
     
-    NSLog(@"beginRefreshOffset %.f contentInsetTop %.f",_beginRefreshOffset,scrollView.contentOffset.y);
+    //NSLog(@"beginRefreshOffset %.f contentInsetTop %.f",_beginRefreshOffset,scrollView.contentOffset.y);
     
     if (scrollView.contentOffset.y < _beginRefreshOffset) {
         // 还没到刷新点

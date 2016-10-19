@@ -7,6 +7,7 @@
 //
 
 #import "TYRefreshView.h"
+#import "TYRefreshView+TYPrivate.h"
 
 // scrollView KVO
 static NSString *const kTYRefreshContentOffsetKey = @"contentOffset";
@@ -14,28 +15,6 @@ static NSString *const kTYRefreshContentSizeKey = @"contentSize";
 static char kTYRefreshContentKey;
 
 #define kRefreshViewHeight 60
-
-@interface TYRefreshView ()
-
-@property (nonatomic, assign) TYRefreshState state;
-
-@property (nonatomic, assign) TYRefreshType type;
-
-@property (nonatomic, copy) TYRefresHandler handler;
-
-@property (nonatomic, strong) UIView<TYRefreshAnimator> *animator;
-
-@property (nonatomic, assign) CGFloat refreshHeight;
-
-@property (nonatomic, assign) BOOL isRefreshing;
-
-@property (nonatomic, assign) BOOL isEndRefreshAnimating;
-
-@property (nonatomic, assign) BOOL isPanGestureBegin;
-
-@property (nonatomic, assign) UIEdgeInsets scrollViewOrignContenInset;
-
-@end
 
 @implementation TYRefreshView
 

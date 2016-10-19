@@ -21,11 +21,19 @@ NS_INLINE void dispatch_main_async_safe_ty_refresh(dispatch_block_t block) {
 
 @property (nonatomic, assign) TYRefreshState state;
 
+@property (nonatomic, assign) TYRefreshType type;
+
+@property (nonatomic, copy) TYRefresHandler handler;
+
+@property (nonatomic, strong) UIView<TYRefreshAnimator> *animator;
+
+@property (nonatomic, assign) CGFloat refreshHeight;
+
 @property (nonatomic, assign) BOOL isRefreshing;
 
-@property (nonatomic, assign) BOOL isPanGestureBegin;
-
 @property (nonatomic, assign) BOOL isEndRefreshAnimating;
+
+@property (nonatomic, assign) BOOL isPanGestureBegin;
 
 @property (nonatomic, assign) UIEdgeInsets scrollViewOrignContenInset;
 
