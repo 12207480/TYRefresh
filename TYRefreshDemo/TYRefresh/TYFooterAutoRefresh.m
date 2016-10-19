@@ -11,6 +11,12 @@
 
 @implementation TYFooterAutoRefresh
 
-
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _autoRefreshWhenScrollProgress = 1.0;
+    }
+    return self;
+}
 
 @end

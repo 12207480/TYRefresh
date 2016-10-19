@@ -10,4 +10,6 @@
 
 @interface TYFooterAutoRefresh : TYFooterRefresh
 
+@property (nonatomic,assign) CGFloat autoRefreshWhenScrollProgress;
+
 @end

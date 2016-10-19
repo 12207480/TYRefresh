@@ -10,6 +10,7 @@
 #import "TYRefreshView.h"
 #import "TYHeaderRefresh.h"
 #import "TYFooterRefresh.h"
+#import "TYFooterAutoRefresh.h"
 #import "TYAnimatorView.h"
 #import "TYGifAnimatorView.h"
 

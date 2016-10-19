@@ -160,9 +160,7 @@ static char kTYRefreshContentKey;
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
-    if (![self superScrollView] || self.hidden) {
-        return;
-    }
+    
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change

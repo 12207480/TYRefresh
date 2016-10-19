@@ -141,7 +141,9 @@
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
-    [super scrollViewContentOffsetDidChange:change];
+    if (![self superScrollView] || self.hidden) {
+        return;
+    }
     
     [self scrollViewContentOffsetDidChangeHeader];
 }
