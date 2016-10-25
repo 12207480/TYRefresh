@@ -81,7 +81,7 @@
         });
     }];
     
-    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new] handler:^{
+    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAutoAnimatorView new] handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];

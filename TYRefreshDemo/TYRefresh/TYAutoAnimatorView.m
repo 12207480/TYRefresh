@@ -53,7 +53,7 @@
 - (void)addIndicatorView
 {
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicatorView.hidesWhenStopped = YES;
+    indicatorView.hidesWhenStopped = NO;
     [self addSubview:indicatorView];
     _indicatorView = indicatorView;
 }
