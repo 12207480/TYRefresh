@@ -160,10 +160,10 @@
 				2B566D001DB62DC600DA1D1E /* TYFooterAutoRefresh.m */,
 				2B58E72C1DADE04200393C3B /* TYAnimatorView.h */,
 				2B58E72D1DADE04200393C3B /* TYAnimatorView.m */,
-				2B3B597C1DBF0642006F2BF5 /* TYAutoAnimatorView.h */,
-				2B3B597D1DBF0642006F2BF5 /* TYAutoAnimatorView.m */,
 				2B3302511DAF33C3005FD95B /* TYGifAnimatorView.h */,
 				2B3302521DAF33C3005FD95B /* TYGifAnimatorView.m */,
+				2B3B597C1DBF0642006F2BF5 /* TYAutoAnimatorView.h */,
+				2B3B597D1DBF0642006F2BF5 /* TYAutoAnimatorView.m */,
 				2B3974281DB0C25900938B26 /* TYRefresh.bundle */,
 			);
 			path = TYRefresh;

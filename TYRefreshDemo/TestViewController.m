@@ -66,6 +66,18 @@
     return gifAnimatorView;
 }
 
+- (TYAutoAnimatorView *)autoGifAnimatorView
+{
+    TYAutoAnimatorView *autoGifAnimatorView = [TYAutoAnimatorView new];
+    // 最好在 initialize 做成static 复用
+    NSMutableArray *loadingImages = [NSMutableArray array];
+    for (int i = 0; i< 3; ++i) {
+        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%d",i+1]]];
+    }
+    [autoGifAnimatorView setLoadingImages:[loadingImages copy]];
+    return autoGifAnimatorView;
+}
+
 - (void)configureTableView
 {
     _tableView.contentInset = UIEdgeInsetsMake(40, 0, 40, 0);
@@ -81,7 +93,7 @@
         });
     }];
     
-    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAutoAnimatorView new] handler:^{
+    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [self autoGifAnimatorView] handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];

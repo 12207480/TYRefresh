@@ -21,6 +21,8 @@
 // Data
 @property (nonatomic, strong) NSMutableDictionary *titleDic;
 
+@property (nonatomic, strong) NSArray *loadingImages;
+
 @end
 
 @implementation TYAutoAnimatorView
@@ -29,7 +31,13 @@
 {
     if (self = [super initWithFrame:frame]) {
         
+        _imageCenterOffsetX = kImageViewCenterOffsetX;
+        _titleLabelLeftEdging = kTitleLabelLeftEdging;
+        _loadingAnimationDuration = 0.25;
+        
         [self addTitleLabel];
+        
+        [self addImageView];
         
         [self addIndicatorView];
     }
@@ -48,6 +56,13 @@
     titleLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
     [self addSubview:titleLabel];
     _titleLabel = titleLabel;
+}
+
+- (void)addImageView
+{
+    UIImageView *imageView = [[UIImageView alloc]init];
+    [self addSubview:imageView];
+    _imageView = imageView;
 }
 
 - (void)addIndicatorView
@@ -78,6 +93,12 @@
     return [self.titleDic objectForKey:@(state)];
 }
 
+- (void)setLoadingImages:(NSArray *)loadingImages
+{
+    _loadingImages = loadingImages;
+    _indicatorView.hidden = YES;
+}
+
 #pragma mark - private
 
 - (void)configureRefreshTitleWithType:(TYRefreshType)type
@@ -103,24 +124,75 @@
 - (void)refreshView:(TYRefreshView *)refreshView didChangeFromState:(TYRefreshState)fromState toState:(TYRefreshState)toState
 {
     _titleLabel.text = [self titleForState:toState];
+    
+    switch (toState) {
+        case TYRefreshStateLoading:
+        {
+            if (_imageView.isAnimating) {
+                [_imageView stopAnimating];
+            }
+            if ( _loadingImages.count == 0) {
+                return;
+            }
+            if (_loadingImages.count == 1) {
+                _imageView.image = _loadingImages.firstObject;
+            }else {
+                _imageView.animationImages = _loadingImages;
+                _imageView.animationDuration = _loadingAnimationDuration;
+            }
+        }
+            break;
+        case TYRefreshStateNormal:
+        {
+            if (_imageView.isAnimating) {
+                [_imageView stopAnimating];
+            }
+            if (_loadingImages.count > 0) {
+                _imageView.image = _loadingImages.firstObject;
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)refreshViewDidBeginRefresh:(TYRefreshView *)refreshView
 {
-    [_indicatorView startAnimating];
+    if (_loadingImages.count > 0) {
+        [_imageView startAnimating];
+    }else {
+         [_indicatorView startAnimating];
+    }
 }
 
 - (void)refreshViewDidEndRefresh:(TYRefreshView *)refreshView
 {
-    [_indicatorView stopAnimating];
+    if (_loadingImages.count > 0) {
+        [_imageView stopAnimating];
+    }else {
+        [_indicatorView stopAnimating];
+    }
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat imageWidth = MAX(CGRectGetWidth(_indicatorView.frame)/2, 20);
-    _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
-    _titleLabel.frame = CGRectMake(CGRectGetMaxX(_indicatorView.frame)+kTitleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(_indicatorView.frame) - kTitleLabelLeftEdging , CGRectGetHeight(self.frame));
+    
+    CGRect leftViewFrame = CGRectZero;
+    if (_loadingImages.count > 0) {
+        UIImage *gifImage = _loadingImages.firstObject;
+        _imageView.frame = CGRectMake(0, 0, gifImage.size.width, gifImage.size.height);
+        CGFloat imageCenterX = _titleLabel.hidden ? CGRectGetWidth(self.frame)/2 : CGRectGetWidth(self.frame)/2 - _imageCenterOffsetX - gifImage.size.width/2 ;
+        _imageView.center = CGPointMake(imageCenterX , CGRectGetHeight(self.frame)/2);
+        leftViewFrame = _imageView.frame;
+    }else {
+        CGFloat imageWidth = MAX(CGRectGetWidth(_indicatorView.frame)/2, 20);
+        _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
+        leftViewFrame = _indicatorView.frame;
+    }
+
+    _titleLabel.frame = CGRectMake(CGRectGetMaxX(leftViewFrame)+_titleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(leftViewFrame) - _titleLabelLeftEdging , CGRectGetHeight(self.frame));
 }
 
 @end

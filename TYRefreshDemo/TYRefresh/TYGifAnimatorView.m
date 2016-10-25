@@ -31,7 +31,7 @@
     if (self = [super initWithFrame:frame]) {
         _titleLabelLeftEdging = kTitleLabelLeftEdging;
         _imageCenterOffsetX = kImageViewCenterOffsetX;
-        _loadinganimationDuration = 0.25;
+        _loadingAnimationDuration = 0.25;
         
         [self addTitleLabel];
         
@@ -161,10 +161,10 @@
                 _imageView.image = loadingImages.firstObject;
             }else {
                 _imageView.animationImages = loadingImages;
-                _imageView.animationDuration = _loadinganimationDuration;
+                _imageView.animationDuration = _loadingAnimationDuration;
             }
-            break;
         }
+            break;
         case TYRefreshStateNormal:
         {
             if (_imageView.isAnimating) {

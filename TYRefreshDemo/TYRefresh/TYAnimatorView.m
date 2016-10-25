@@ -116,6 +116,15 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     [self setTitle: @"没有更多了" forState:TYRefreshStateNoMore];
 }
 
+//- (CGFloat)titleWidthWithLabel:(UILabel *)label
+//{
+//    return [label.text
+//            boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+//            options:NSStringDrawingUsesLineFragmentOrigin
+//            attributes:@{NSFontAttributeName:label.font}
+//            context:nil].size.width;
+//}
+
 #pragma mark - TYRefreshAnimator
 
 - (void)refreshViewDidPrepareRefresh:(TYRefreshView *)refreshView
@@ -166,6 +175,7 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     [super layoutSubviews];
     _imageView.frame = CGRectMake(0, 0, _imageView.image.size.width, _imageView.image.size.height);
     CGFloat imageWidth = MAX(MAX(CGRectGetWidth(_imageView.frame)/2, CGRectGetWidth(_indicatorView.frame)/2), 20);
+
     _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
     _imageView.center = _indicatorView.center;
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(_indicatorView.frame)+kTitleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(_indicatorView.frame) - kTitleLabelLeftEdging , CGRectGetHeight(self.frame));

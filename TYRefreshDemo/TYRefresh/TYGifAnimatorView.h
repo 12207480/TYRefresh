@@ -18,7 +18,7 @@
 
 // Data
 
-@property (nonatomic, assign) CGFloat loadinganimationDuration;
+@property (nonatomic, assign) CGFloat loadingAnimationDuration;
 
 @property (nonatomic, assign) CGFloat imageCenterOffsetX;
 
