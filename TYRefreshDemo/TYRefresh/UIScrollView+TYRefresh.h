@@ -13,6 +13,7 @@
 #import "TYFooterAutoRefresh.h"
 #import "TYAnimatorView.h"
 #import "TYGifAnimatorView.h"
+#import "TYAutoAnimatorView.h"
 
 @interface UIScrollView (TYRefresh)
 

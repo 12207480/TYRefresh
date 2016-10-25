@@ -122,7 +122,7 @@ static char kTYRefreshContentKey;
 - (void)configureScrollView:(UIScrollView *)scrollView
 {
     scrollView.alwaysBounceVertical = YES;
-    _scrollViewOrignContenInset = scrollView.contentInset;
+    self.scrollViewOrignContenInset = scrollView.contentInset;
 }
 
 
