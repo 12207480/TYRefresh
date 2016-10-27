@@ -149,6 +149,16 @@
 			children = (
 				2B3FA1CF1DAB88410019EF83 /* UIScrollView+TYRefresh.h */,
 				2B3FA1D01DAB88410019EF83 /* UIScrollView+TYRefresh.m */,
+				B00F1E161DC23F7500007786 /* Refresh */,
+				B087C5961DC2217F00F1D16E /* Animator */,
+				2B3974281DB0C25900938B26 /* TYRefresh.bundle */,
+			);
+			path = TYRefresh;
+			sourceTree = "<group>";
+		};
+		B00F1E161DC23F7500007786 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
 				2B379B031DAB71FE00F5E4EF /* TYRefreshView.h */,
 				2B379B041DAB71FE00F5E4EF /* TYRefreshView.m */,
 				2B566CFC1DB61EAF00DA1D1E /* TYRefreshView+Extension.h */,
@@ -158,15 +168,21 @@
 				2B3974341DB0C40B00938B26 /* TYFooterRefresh.m */,
 				2B566CFF1DB62DC600DA1D1E /* TYFooterAutoRefresh.h */,
 				2B566D001DB62DC600DA1D1E /* TYFooterAutoRefresh.m */,
+			);
+			name = Refresh;
+			sourceTree = "<group>";
+		};
+		B087C5961DC2217F00F1D16E /* Animator */ = {
+			isa = PBXGroup;
+			children = (
 				2B58E72C1DADE04200393C3B /* TYAnimatorView.h */,
 				2B58E72D1DADE04200393C3B /* TYAnimatorView.m */,
 				2B3302511DAF33C3005FD95B /* TYGifAnimatorView.h */,
 				2B3302521DAF33C3005FD95B /* TYGifAnimatorView.m */,
 				2B3B597C1DBF0642006F2BF5 /* TYAutoAnimatorView.h */,
 				2B3B597D1DBF0642006F2BF5 /* TYAutoAnimatorView.m */,
-				2B3974281DB0C25900938B26 /* TYRefresh.bundle */,
 			);
-			path = TYRefresh;
+			name = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

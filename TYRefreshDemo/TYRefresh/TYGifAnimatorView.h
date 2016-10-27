@@ -14,6 +14,8 @@
 // UI
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 
+@property (nonatomic, weak, readonly) UILabel *messageLabel;
+
 @property (nonatomic, weak, readonly) UIImageView *imageView;
 
 // Data

@@ -21,6 +21,8 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
 // UI
 @property (nonatomic, weak) UILabel *titleLabel;
 
+@property (nonatomic, weak) UILabel *messageLabel;
+
 @property (nonatomic, weak) UIImageView *imageView;
 
 @property (nonatomic, weak) UIActivityIndicatorView *indicatorView;
@@ -37,6 +39,8 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     if (self = [super initWithFrame:frame]) {
         
         [self addTitleLabel];
+        
+        [self addMessageLabel];
         
         [self addImageView];
         
@@ -57,6 +61,16 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     titleLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
     [self addSubview:titleLabel];
     _titleLabel = titleLabel;
+}
+
+- (void)addMessageLabel
+{
+    UILabel *messageLabel = [[UILabel alloc]init];
+    messageLabel.font = [UIFont systemFontOfSize:14];
+    messageLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:messageLabel];
+    _messageLabel = messageLabel;
 }
 
 - (void)addImageView
@@ -116,15 +130,6 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     [self setTitle: @"没有更多了" forState:TYRefreshStateNoMore];
 }
 
-//- (CGFloat)titleWidthWithLabel:(UILabel *)label
-//{
-//    return [label.text
-//            boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
-//            options:NSStringDrawingUsesLineFragmentOrigin
-//            attributes:@{NSFontAttributeName:label.font}
-//            context:nil].size.width;
-//}
-
 #pragma mark - TYRefreshAnimator
 
 - (void)refreshViewDidPrepareRefresh:(TYRefreshView *)refreshView
@@ -138,8 +143,20 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
 
 - (void)refreshView:(TYRefreshView *)refreshView didChangeFromState:(TYRefreshState)fromState toState:(TYRefreshState)toState
 {
-    _imageView.hidden = toState == TYRefreshStateLoading;
-    _titleLabel.text = [self titleForState:toState];
+    if (toState == TYRefreshStateNoMore || toState == TYRefreshStateError) {
+        _titleLabel.hidden = YES;
+        _imageView.hidden = YES;
+        _indicatorView.hidden = YES;
+        _messageLabel.hidden = NO;
+        _messageLabel.text = [self titleForState:toState];
+    }else {
+        _titleLabel.hidden = NO;
+        _imageView.hidden = toState == TYRefreshStateLoading;
+        _indicatorView.hidden = !_indicatorView.isAnimating;
+        _messageLabel.hidden = YES;
+        _titleLabel.text = [self titleForState:toState];
+    }
+    
     switch (toState) {
         case TYRefreshStateNormal:
             [self rotateArrowDirection:refreshView.type==TYRefreshTypeHeader ? TYArrowDirectionDown:TYArrowDirectionUp animated:NO];
@@ -179,6 +196,8 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
     _imageView.center = _indicatorView.center;
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(_indicatorView.frame)+kTitleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(_indicatorView.frame) - kTitleLabelLeftEdging , CGRectGetHeight(self.frame));
+    
+    _messageLabel.frame = self.bounds;
 }
 
 @end

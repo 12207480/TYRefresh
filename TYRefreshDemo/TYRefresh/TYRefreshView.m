@@ -57,6 +57,11 @@ static char kTYRefreshContentKey;
     return nil;
 }
 
+- (BOOL)canPullingRefresh
+{
+    return _state == TYRefreshStateNone || _state == TYRefreshStateNormal || _state == TYRefreshStatePulling || _state == TYRefreshStateRelease;
+}
+
 #pragma mark - setter
 
 - (void)setState:(TYRefreshState)state
@@ -145,6 +150,21 @@ static char kTYRefreshContentKey;
 - (void)endRefreshing
 {
     
+}
+
+- (void)endRefreshingWithNoMoreData
+{
+    
+}
+
+- (void)endRefreshingWithError
+{
+    
+}
+
+- (void)resetNormalState
+{
+    self.state = TYRefreshStateNormal;
 }
 
 #pragma mark - Observer scrollView

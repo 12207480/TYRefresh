@@ -16,6 +16,8 @@
 // UI
 @property (nonatomic, weak) UILabel *titleLabel;
 
+@property (nonatomic, weak) UILabel *messageLabel;
+
 @property (nonatomic, weak) UIActivityIndicatorView *indicatorView;
 
 // Data
@@ -37,6 +39,8 @@
         
         [self addTitleLabel];
         
+        [self addMessageLabel];
+        
         [self addImageView];
         
         [self addIndicatorView];
@@ -57,6 +61,17 @@
     [self addSubview:titleLabel];
     _titleLabel = titleLabel;
 }
+
+- (void)addMessageLabel
+{
+    UILabel *messageLabel = [[UILabel alloc]init];
+    messageLabel.font = [UIFont systemFontOfSize:14];
+    messageLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:messageLabel];
+    _messageLabel = messageLabel;
+}
+
 
 - (void)addImageView
 {
@@ -96,7 +111,6 @@
 - (void)setLoadingImages:(NSArray *)loadingImages
 {
     _loadingImages = loadingImages;
-    _indicatorView.hidden = YES;
 }
 
 #pragma mark - private
@@ -125,6 +139,20 @@
 {
     _titleLabel.text = [self titleForState:toState];
     
+    if (toState == TYRefreshStateNormal || toState == TYRefreshStateNoMore || toState == TYRefreshStateError) {
+        _titleLabel.hidden = YES;
+        _imageView.hidden = YES;
+        _indicatorView.hidden = YES;
+        _messageLabel.hidden = NO;
+        _messageLabel.text = [self titleForState:toState];
+    }else {
+        _titleLabel.hidden = NO;
+        _imageView.hidden = _loadingImages.count <= 0;
+        _indicatorView.hidden = _loadingImages.count > 0;
+        _messageLabel.hidden = YES;
+        _titleLabel.text = [self titleForState:toState];
+    }
+    
     switch (toState) {
         case TYRefreshStateLoading:
         {
@@ -147,9 +175,10 @@
             if (_imageView.isAnimating) {
                 [_imageView stopAnimating];
             }
-            if (_loadingImages.count > 0) {
-                _imageView.image = _loadingImages.firstObject;
+            if ( _loadingImages.count == 0) {
+                return;
             }
+            _imageView.image = _loadingImages.firstObject;
         }
             break;
         default:
@@ -193,6 +222,7 @@
     }
 
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(leftViewFrame)+_titleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(leftViewFrame) - _titleLabelLeftEdging , CGRectGetHeight(self.frame));
+    _messageLabel.frame = self.bounds;
 }
 
 @end

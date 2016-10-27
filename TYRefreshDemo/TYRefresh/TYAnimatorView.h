@@ -13,6 +13,8 @@
 
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 
+@property (nonatomic, weak, readonly) UILabel *messageLabel;
+
 @property (nonatomic, weak, readonly) UIImageView *imageView;
 
 @property (nonatomic, weak, readonly) UIActivityIndicatorView *indicatorView;

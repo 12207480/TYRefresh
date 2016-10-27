@@ -79,6 +79,8 @@ typedef void(^TYRefresHandler)(void);
 - (instancetype)initWithType:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler; // height = animator's height
 
 
+- (BOOL)canPullingRefresh;
+
 #pragma mark - super scrollView
 
 - (UIScrollView *)superScrollView;
@@ -102,5 +104,11 @@ typedef void(^TYRefresHandler)(void);
 - (void)beginRefreshing;
 
 - (void)endRefreshing;
+
+- (void)endRefreshingWithNoMoreData;
+
+- (void)endRefreshingWithError;
+
+- (void)resetNormalState;
 
 @end

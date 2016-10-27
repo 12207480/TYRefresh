@@ -16,10 +16,13 @@
 // UI
 @property (nonatomic, weak) UILabel *titleLabel;
 
+@property (nonatomic, weak) UILabel *messageLabel;
+
 @property (nonatomic, weak) UIImageView *imageView;
 
 // Data
 @property (nonatomic, strong) NSMutableDictionary *titleDic;
+
 @property (nonatomic, strong) NSMutableDictionary *gifImageDic;
 
 @end
@@ -29,11 +32,14 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
         _titleLabelLeftEdging = kTitleLabelLeftEdging;
         _imageCenterOffsetX = kImageViewCenterOffsetX;
         _loadingAnimationDuration = 0.25;
         
         [self addTitleLabel];
+        
+        [self addMessageLabel];
         
         [self addImageView];
     }
@@ -52,6 +58,16 @@
     titleLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
     [self addSubview:titleLabel];
     _titleLabel = titleLabel;
+}
+
+- (void)addMessageLabel
+{
+    UILabel *messageLabel = [[UILabel alloc]init];
+    messageLabel.font = [UIFont systemFontOfSize:14];
+    messageLabel.textColor = [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1.0];
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:messageLabel];
+    _messageLabel = messageLabel;
 }
 
 - (void)addImageView
@@ -145,8 +161,18 @@
 
 - (void)refreshView:(TYRefreshView *)refreshView didChangeFromState:(TYRefreshState)fromState toState:(TYRefreshState)toState
 {
-    _titleLabel.text = [self titleForState:toState];
-    
+    if (toState == TYRefreshStateNoMore || toState == TYRefreshStateError) {
+        _titleLabel.hidden = YES;
+        _imageView.hidden = YES;
+        _messageLabel.hidden = NO;
+        _messageLabel.text = [self titleForState:toState];
+    }else {
+        _titleLabel.hidden = NO;
+        _imageView.hidden = NO;
+        _messageLabel.hidden = YES;
+        _titleLabel.text = [self titleForState:toState];
+    }
+
     switch (toState) {
         case TYRefreshStateLoading:
         {
@@ -207,6 +233,8 @@
     _imageView.center = CGPointMake(imageCenterX , CGRectGetHeight(self.frame)/2);
     
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame)+_titleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(_imageView.frame) - _titleLabelLeftEdging , CGRectGetHeight(self.frame));
+    
+    _messageLabel.frame = self.bounds;
 }
 
 @end
