@@ -30,6 +30,18 @@
     [self.navigationController pushViewController:testVC animated:YES];
 
 }
+- (IBAction)normalAutoRefrshAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.isAutoFooterRefresh = YES;
+    [self.navigationController pushViewController:testVC animated:YES];
+    
+}
+- (IBAction)gifAutoRefreshAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.isAutoFooterRefresh = YES;
+    testVC.isGifRefresh = YES;
+    [self.navigationController pushViewController:testVC animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

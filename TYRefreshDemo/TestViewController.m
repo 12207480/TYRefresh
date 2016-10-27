@@ -24,7 +24,11 @@
     //self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addTableView];
     
-    [self configureTableView];
+    if (_isAutoFooterRefresh) {
+        [self configureAutoFooterRefesh];
+    }else {
+        [self configureNormalRefesh];
+    }
     
     [self loadData];
 }
@@ -46,6 +50,8 @@
     _tableView = tableView;
 }
 
+#pragma mark - normalRefesh
+
 - (TYGifAnimatorView *)gifAnimatorView
 {
     TYGifAnimatorView *gifAnimatorView = [TYGifAnimatorView new];
@@ -66,19 +72,7 @@
     return gifAnimatorView;
 }
 
-- (TYAutoAnimatorView *)autoGifAnimatorView
-{
-    TYAutoAnimatorView *autoGifAnimatorView = [TYAutoAnimatorView new];
-    // 最好在 initialize 做成static 复用
-    NSMutableArray *loadingImages = [NSMutableArray array];
-    for (int i = 0; i< 3; ++i) {
-        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%d",i+1]]];
-    }
-    [autoGifAnimatorView setLoadingImages:[loadingImages copy]];
-    return autoGifAnimatorView;
-}
-
-- (void)configureTableView
+- (void)configureNormalRefesh
 {
     _tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
@@ -93,7 +87,7 @@
         });
     }];
     
-    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [self autoGifAnimatorView] handler:^{
+    _tableView.ty_refreshFooter = [TYFooterRefresh footerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new] handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];
@@ -103,6 +97,47 @@
     }];
 
 }
+
+#pragma mark - auto footer refresh
+
+- (TYAutoAnimatorView *)autoGifAnimatorView
+{
+    TYAutoAnimatorView *autoGifAnimatorView = [TYAutoAnimatorView new];
+    // 最好在 initialize 做成static 复用
+    NSMutableArray *loadingImages = [NSMutableArray array];
+    for (int i = 0; i< 3; ++i) {
+        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%d",i+1]]];
+    }
+    [autoGifAnimatorView setLoadingImages:[loadingImages copy]];
+    return autoGifAnimatorView;
+}
+
+- (void)configureAutoFooterRefesh
+{
+    _tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
+    
+    __weak typeof(self) weakSelf = self;
+    _tableView.ty_refreshHeader = [TYHeaderRefresh headerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new]  handler:^{
+        NSLog(@"上拉刷新");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf loadData];
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView.ty_refreshHeader endRefreshing];
+        });
+    }];
+    
+    _tableView.ty_refreshFooter = [TYFooterAutoRefresh footerWithAnimator:_isGifRefresh ?[self autoGifAnimatorView] : [TYAutoAnimatorView new] handler:^{
+        NSLog(@"下拉刷新");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf loadMoreData];
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView.ty_refreshFooter endRefreshing];
+        });
+    }];
+}
+
+#pragma mark - load data
 
 - (void)loadData
 {

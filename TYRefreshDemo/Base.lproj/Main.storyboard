@@ -30,13 +30,29 @@
                                     <action selector="gifRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IR1-Hw-BkN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMb-4C-s9j">
+                                <state key="normal" title="动画自动下拉刷新"/>
+                                <connections>
+                                    <action selector="gifAutoRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTZ-AD-GMP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoE-qr-JB5">
+                                <state key="normal" title="普通自动下拉刷新"/>
+                                <connections>
+                                    <action selector="normalAutoRefrshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Snm-80-4te"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1WR-HO-pXM"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EeQ-BB-pvd"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="91" id="KFB-tS-dO3"/>
+                            <constraint firstItem="RoE-qr-JB5" firstAttribute="top" secondItem="wOO-cn-cdO" secondAttribute="bottom" constant="35" id="QFR-5s-y7k"/>
+                            <constraint firstItem="mMb-4C-s9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S1U-Lg-Eid"/>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="top" secondItem="qM3-rz-0Br" secondAttribute="bottom" constant="33" id="XLS-Go-7by"/>
+                            <constraint firstItem="RoE-qr-JB5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nWb-Af-DtW"/>
+                            <constraint firstItem="mMb-4C-s9j" firstAttribute="top" secondItem="RoE-qr-JB5" secondAttribute="bottom" constant="28" id="qHy-TF-axS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RrP-5Q-Pou"/>

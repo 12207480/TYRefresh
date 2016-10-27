@@ -10,6 +10,8 @@
 
 @interface TestViewController : UIViewController
 
+@property (nonatomic, assign) BOOL isAutoFooterRefresh;
+
 @property (nonatomic, assign) BOOL isGifRefresh;
 
 @end
