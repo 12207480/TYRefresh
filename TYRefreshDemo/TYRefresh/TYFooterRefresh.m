@@ -33,9 +33,9 @@
 
 #pragma mark - configure scrollView
 
-- (void)configureScrollView:(UIScrollView *)scrollView
+- (void)didObserverScrollView:(UIScrollView *)scrollView
 {
-    [super configureScrollView:scrollView];
+    [super didObserverScrollView:scrollView];
     
     [self adjsutFrameToScrollView:scrollView];
 }
@@ -140,6 +140,10 @@
 - (void)scrollViewContentOffsetDidChangeFooter
 {
     UIScrollView *scrollView = [self superScrollView];
+    
+    if (CGRectGetHeight(scrollView.frame)<= 0 || self.refreshHeight <= 0) {
+        return;
+    }
     
     if (self.isRefreshing) {
         return;

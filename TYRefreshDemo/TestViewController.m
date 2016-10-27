@@ -80,7 +80,7 @@
 
 - (void)configureTableView
 {
-    _tableView.contentInset = UIEdgeInsetsMake(40, 0, 40, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
     
     __weak typeof(self) weakSelf = self;
@@ -107,7 +107,7 @@
 - (void)loadData
 {
     _testData = [NSMutableArray array];
-    for (int i = 0; i <= 10; ++i) {
+    for (int i = 0; i <= 8; ++i) {
         [_testData addObject:[NSString stringWithFormat:@"测试数据 row：%d",i]];
     }
 }

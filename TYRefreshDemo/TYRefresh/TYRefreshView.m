@@ -113,13 +113,20 @@ static char kTYRefreshContentKey;
     if (newSuperview && [newSuperview isKindOfClass:[UIScrollView class]]) {
         UIScrollView *scrollView = (UIScrollView *)newSuperview;
         
+        [self willObserverScrollView:scrollView];
+        
         [self addObserverScrollView:scrollView];
         
-        [self configureScrollView:scrollView];
+        [self didObserverScrollView:scrollView];
     }
 }
 
-- (void)configureScrollView:(UIScrollView *)scrollView
+- (void)willObserverScrollView:(UIScrollView *)scrollView
+{
+    
+}
+
+- (void)didObserverScrollView:(UIScrollView *)scrollView
 {
     scrollView.alwaysBounceVertical = YES;
     self.scrollViewOrignContenInset = scrollView.contentInset;

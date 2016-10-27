@@ -33,21 +33,9 @@
     return [[self alloc]initWithType:TYRefreshTypeFooter animator:animator handler:handler];
 }
 
-- (void)configureScrollView:(UIScrollView *)scrollView
+- (void)didObserverScrollView:(UIScrollView *)scrollView
 {
-    [super configureScrollView:scrollView];
-    
-    [self configureAdjustScrollViewContentInset:scrollView];
-    
-    
-}
-
-- (void)configureAdjustScrollViewContentInset:(UIScrollView *)scrollView
-{
-    UIEdgeInsets  scrollViewAdjustContenInset = self.scrollViewOrignContenInset;
-    scrollViewAdjustContenInset.bottom += self.refreshHeight;
-    _scrollViewAdjustContenInset = scrollViewAdjustContenInset;
-    scrollView.contentInset = _scrollViewAdjustContenInset;
+    [super didObserverScrollView:scrollView];
 }
 
 - (void)adjsutFrameToScrollView:(UIScrollView *)scrollView
@@ -143,12 +131,27 @@
 {
     UIScrollView *scrollView = [self superScrollView];
     
+    if (CGRectGetHeight(scrollView.frame)<= 0 || self.refreshHeight <= 0) {
+        return;
+    }
+    
     if (self.isRefreshing) {
         return;
     }
     
-    if (!UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset, scrollView.contentInset)) {
-        self.scrollViewAdjustContenInset = scrollView.contentInset;
+    if (!UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset, scrollView.contentInset) || UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset,UIEdgeInsetsZero)) {
+        if (UIEdgeInsetsEqualToEdgeInsets(self.scrollViewOrignContenInset, scrollView.contentInset) || UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset,UIEdgeInsetsZero)) {
+            self.scrollViewOrignContenInset = scrollView.contentInset;
+            UIEdgeInsets  scrollViewAdjustContenInset = scrollView.contentInset;
+            scrollViewAdjustContenInset.bottom += self.refreshHeight;
+            _scrollViewAdjustContenInset = scrollViewAdjustContenInset;
+        }else {
+            self.scrollViewAdjustContenInset = scrollView.contentInset;
+        }
+        
+        if (!UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset, scrollView.contentInset)) {
+            scrollView.contentInset = _scrollViewAdjustContenInset;
+        }
     }
     
     if (scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {

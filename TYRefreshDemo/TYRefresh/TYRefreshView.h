@@ -85,7 +85,9 @@ typedef void(^TYRefresHandler)(void);
 
 #pragma mark - configure scrollView
 
-- (void)configureScrollView:(UIScrollView *)scrollView;
+- (void)willObserverScrollView:(UIScrollView *)scrollView;
+
+- (void)didObserverScrollView:(UIScrollView *)scrollView;
 
 #pragma mark - observe scrollView
 

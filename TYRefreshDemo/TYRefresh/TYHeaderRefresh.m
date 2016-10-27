@@ -32,9 +32,9 @@
 
 #pragma mark - configure scrollView
 
-- (void)configureScrollView:(UIScrollView *)scrollView
+- (void)didObserverScrollView:(UIScrollView *)scrollView
 {
-    [super configureScrollView:scrollView];
+    [super didObserverScrollView:scrollView];
     
     [self adjsutFrameToScrollView:scrollView];
 }
@@ -151,6 +151,11 @@
 - (void)scrollViewContentOffsetDidChangeHeader
 {
     UIScrollView *scrollView = [self superScrollView];
+    
+    if (CGRectGetHeight(scrollView.frame)<= 0 || self.refreshHeight <= 0) {
+        return;
+    }
+    
     if (self.isRefreshing) {
         // 处理 section header
         CGFloat contentInsetTop = scrollView.contentOffset.y > -self.scrollViewOrignContenInset.top ? self.scrollViewOrignContenInset.top : -scrollView.contentOffset.y;
@@ -191,11 +196,15 @@
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
+    UIScrollView *scrollView = [self superScrollView];
+    if (!scrollView) {
+        return;
+    }
+    
     CGSize oldContentSize = [[change valueForKey:NSKeyValueChangeOldKey] CGSizeValue];
     CGSize newContentSize = [[change valueForKey:NSKeyValueChangeNewKey] CGSizeValue];
     
-    UIScrollView *scrollView = [self superScrollView];
-    if (CGSizeEqualToSize(oldContentSize, newContentSize) || !scrollView) {
+    if (CGSizeEqualToSize(oldContentSize, newContentSize)) {
         return;
     }
     
