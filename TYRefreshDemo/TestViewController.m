@@ -140,6 +140,10 @@
             [weakSelf.tableView reloadData];
             if (weakSelf.testData.count < 20) {
                 [weakSelf.tableView.ty_refreshFooter endRefreshing];
+                UIEdgeInsets contentInset = weakSelf.tableView.contentInset;
+//                contentInset.top += 40;
+//                contentInset.bottom = 120;
+                weakSelf.tableView.contentInset = contentInset;
             }else {
                 [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
             }

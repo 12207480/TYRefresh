@@ -50,11 +50,9 @@
                             self.refreshHeight);
 }
 
-- (void)setScrollViewAdjustContenInset:(UIEdgeInsets)scrollViewAdjustContenInset
+- (CGFloat)adjustContentInsetBottom
 {
-    _scrollViewAdjustContenInset = scrollViewAdjustContenInset;
-    scrollViewAdjustContenInset.bottom -= self.refreshHeight;
-    self.scrollViewOrignContenInset = scrollViewAdjustContenInset;
+    return _adjustOriginBottomContentInset ? self.refreshHeight : MAX(self.refreshHeight, self.scrollViewOrignContenInset.bottom);
 }
 
 #pragma mark - begin refresh
@@ -156,13 +154,20 @@
     }
     
     if (!UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset, scrollView.contentInset) || UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset,UIEdgeInsetsZero)) {
-        if (UIEdgeInsetsEqualToEdgeInsets(self.scrollViewOrignContenInset, scrollView.contentInset) || UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset,UIEdgeInsetsZero)) {
+        if (scrollView.contentInset.bottom != _scrollViewAdjustContenInset.bottom || UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset,UIEdgeInsetsZero)) {
             self.scrollViewOrignContenInset = scrollView.contentInset;
             UIEdgeInsets  scrollViewAdjustContenInset = scrollView.contentInset;
             scrollViewAdjustContenInset.bottom += self.refreshHeight;
             _scrollViewAdjustContenInset = scrollViewAdjustContenInset;
         }else {
-            self.scrollViewAdjustContenInset = scrollView.contentInset;
+            UIEdgeInsets scrollViewOrignContenInset = scrollView.contentInset;
+            scrollViewOrignContenInset.bottom = self.scrollViewOrignContenInset.bottom;
+            self.scrollViewOrignContenInset = scrollViewOrignContenInset;
+            
+            UIEdgeInsets scrollViewAdjustContenInset = scrollView.contentInset;
+            scrollViewAdjustContenInset.bottom = _scrollViewAdjustContenInset.bottom;
+            _scrollViewAdjustContenInset = scrollViewAdjustContenInset;
+            
         }
         
         if (!UIEdgeInsetsEqualToEdgeInsets(_scrollViewAdjustContenInset, scrollView.contentInset)) {
