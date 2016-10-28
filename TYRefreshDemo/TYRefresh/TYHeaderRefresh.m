@@ -106,7 +106,7 @@
 }
 
 // 结束刷新状态
-- (void)endRefreshing
+- (void)endRefreshingWithState:(TYRefreshState)state
 {
     UIScrollView *scrollView = [self superScrollView];
     if (!scrollView || !self.isRefreshing || self.isEndRefreshAnimating) {
@@ -117,11 +117,11 @@
     self.isEndRefreshAnimating = YES;
     
     dispatch_main_async_safe_ty_refresh(^{
-        [self endRefreshingAnimationOnScrollView:scrollView];
+        [self endRefreshingAnimationOnScrollView:scrollView state:state];
     });
 }
 
-- (void)endRefreshingAnimationOnScrollView:(UIScrollView *)scrollView
+- (void)endRefreshingAnimationOnScrollView:(UIScrollView *)scrollView state:(TYRefreshState)state
 {
     [UIView animateWithDuration:self.endAnimateDuring animations:^{
         UIEdgeInsets contentInset = scrollView.contentInset;
@@ -133,8 +133,23 @@
         if ([self.animator respondsToSelector:@selector(refreshViewDidEndRefresh:)]) {
             [self.animator refreshViewDidEndRefresh:self];
         }
-        self.state = TYRefreshStateNormal;
+        self.state = state;
     }];
+}
+
+- (void)endRefreshing
+{
+    [self endRefreshingWithState:TYRefreshStateNormal];
+}
+
+- (void)endRefreshingWithNoMoreData
+{
+    [self endRefreshingWithState:TYRefreshStateNoMore];
+}
+
+- (void)endRefreshingWithError
+{
+    [self endRefreshingWithState:TYRefreshStateError];
 }
 
 #pragma mark - observe scrollView
@@ -186,6 +201,10 @@
     }
     
     if (scrollView.contentOffset.y > -self.scrollViewOrignContenInset.top) { // 还没到临界点
+        return;
+    }
+    
+    if (![self canPullingRefresh]) {
         return;
     }
     

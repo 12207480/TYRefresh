@@ -81,10 +81,15 @@
     _tableView.ty_refreshHeader = [TYHeaderRefresh headerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new]  handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            BOOL errorState = weakSelf.testData.count > 20;
             [weakSelf loadData];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.ty_refreshFooter resetNormalState];
-            [weakSelf.tableView.ty_refreshHeader endRefreshing];
+            if (errorState) {
+                [weakSelf.tableView.ty_refreshHeader endRefreshingWithError];
+            }else {
+                [weakSelf.tableView.ty_refreshHeader endRefreshing];
+            }
         });
     }];
     
@@ -93,6 +98,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];
             [weakSelf.tableView reloadData];
+            [weakSelf.tableView.ty_refreshHeader resetNormalState];
             if (weakSelf.testData.count < 20) {
                  [weakSelf.tableView.ty_refreshFooter endRefreshing];
             }else {
