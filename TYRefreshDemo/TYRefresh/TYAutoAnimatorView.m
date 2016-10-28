@@ -212,7 +212,7 @@
     if (_loadingImages.count > 0) {
         UIImage *gifImage = _loadingImages.firstObject;
         _imageView.frame = CGRectMake(0, 0, gifImage.size.width, gifImage.size.height);
-        CGFloat imageCenterX = _titleLabel.hidden ? CGRectGetWidth(self.frame)/2 : CGRectGetWidth(self.frame)/2 - _imageCenterOffsetX - gifImage.size.width/2 ;
+        CGFloat imageCenterX = _titleLabel.hidden && _messageLabel.hidden ? CGRectGetWidth(self.frame)/2 : CGRectGetWidth(self.frame)/2 - _imageCenterOffsetX - gifImage.size.width/2;
         _imageView.center = CGPointMake(imageCenterX , CGRectGetHeight(self.frame)/2);
         leftViewFrame = _imageView.frame;
     }else {

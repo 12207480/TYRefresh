@@ -42,17 +42,49 @@
                                     <action selector="normalAutoRefrshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Snm-80-4te"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2b-OJ-cRK">
+                                <state key="normal" title="普通上下拉刷新无数据和失败状态"/>
+                                <connections>
+                                    <action selector="normalRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GXS-OR-sDh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYo-bJ-BxY">
+                                <state key="normal" title="自动上下拉刷新无数据和失败状态"/>
+                                <connections>
+                                    <action selector="autoRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcT-oZ-TMp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FV0-tK-LBq">
+                                <state key="normal" title="上下拉刷新设置原始contentInset adjust YES"/>
+                                <connections>
+                                    <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X2h-LG-LgJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X6-3y-m8v">
+                                <frame key="frameInset" minX="36" minY="558" width="302" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="上下拉刷新设置原始contentInset adjust NO"/>
+                                <connections>
+                                    <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ed-pG-4c2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1WR-HO-pXM"/>
+                            <constraint firstItem="G2b-OJ-cRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4KL-JD-iVy"/>
+                            <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="mMb-4C-s9j" secondAttribute="bottom" constant="27" id="Da5-LZ-lCj"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EeQ-BB-pvd"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="91" id="KFB-tS-dO3"/>
+                            <constraint firstItem="ZYo-bJ-BxY" firstAttribute="top" secondItem="G2b-OJ-cRK" secondAttribute="bottom" constant="29" id="OmL-HT-6CA"/>
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="top" secondItem="wOO-cn-cdO" secondAttribute="bottom" constant="35" id="QFR-5s-y7k"/>
                             <constraint firstItem="mMb-4C-s9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S1U-Lg-Eid"/>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="top" secondItem="qM3-rz-0Br" secondAttribute="bottom" constant="33" id="XLS-Go-7by"/>
+                            <constraint firstItem="FV0-tK-LBq" firstAttribute="top" secondItem="ZYo-bJ-BxY" secondAttribute="bottom" constant="25" id="hER-2S-hr1"/>
+                            <constraint firstItem="FV0-tK-LBq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iKH-Vs-2Ny"/>
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nWb-Af-DtW"/>
                             <constraint firstItem="mMb-4C-s9j" firstAttribute="top" secondItem="RoE-qr-JB5" secondAttribute="bottom" constant="28" id="qHy-TF-axS"/>
+                            <constraint firstItem="ZYo-bJ-BxY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tuZ-It-4Xh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RrP-5Q-Pou"/>

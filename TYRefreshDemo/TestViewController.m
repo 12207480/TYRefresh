@@ -41,7 +41,7 @@
 
 - (void)addTableView
 {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor whiteColor];
@@ -74,14 +74,16 @@
 
 - (void)configureNormalRefesh
 {
-    _tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
+    if (_setOrignContentInset) {
+        _tableView.contentInset = UIEdgeInsetsMake(60, 0, 60, 0);
+    }
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
     
     __weak typeof(self) weakSelf = self;
     _tableView.ty_refreshHeader = [TYHeaderRefresh headerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new]  handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            BOOL errorState = weakSelf.testData.count > 20;
+            BOOL errorState = _haveNoMoreAndErrorRefresh && weakSelf.testData.count > 20;
             [weakSelf loadData];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.ty_refreshFooter resetNormalState];
@@ -99,14 +101,18 @@
             [weakSelf loadMoreData];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.ty_refreshHeader resetNormalState];
-            if (weakSelf.testData.count < 20) {
-                 [weakSelf.tableView.ty_refreshFooter endRefreshing];
-            }else {
+            if (weakSelf.testData.count > 20 && _haveNoMoreAndErrorRefresh) {
                 [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
+            }else {
+                [weakSelf.tableView.ty_refreshFooter endRefreshing];
             }
         });
     }];
-
+    
+    if (_setOrignContentInset) {
+        ((TYHeaderRefresh *)_tableView.ty_refreshHeader).adjustOriginTopContentInset = _adjustOrignContentInset;
+        ((TYFooterRefresh *)_tableView.ty_refreshFooter).adjustOriginBottomContentInset = _adjustOrignContentInset;
+    }
 }
 
 #pragma mark - auto footer refresh
@@ -125,7 +131,9 @@
 
 - (void)configureAutoFooterRefesh
 {
-    _tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
+    if (_setOrignContentInset) {
+        _tableView.contentInset = UIEdgeInsetsMake(60, 0, 60, 0);
+    }
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
     
     __weak typeof(self) weakSelf = self;
@@ -144,14 +152,14 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];
             [weakSelf.tableView reloadData];
-            if (weakSelf.testData.count < 20) {
+            if (weakSelf.testData.count > 20 && _haveNoMoreAndErrorRefresh) {
+                [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
+            }else {
                 [weakSelf.tableView.ty_refreshFooter endRefreshing];
                 UIEdgeInsets contentInset = weakSelf.tableView.contentInset;
-//                contentInset.top += 40;
-//                contentInset.bottom = 120;
+                //                contentInset.top += 40;
+                //                contentInset.bottom = 120;
                 weakSelf.tableView.contentInset = contentInset;
-            }else {
-                [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
             }
         });
     }];

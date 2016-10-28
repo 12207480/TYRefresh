@@ -43,6 +43,27 @@
     [self.navigationController pushViewController:testVC animated:YES];
 }
 
+- (IBAction)normalRefreshNoMoreAndErrorAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.haveNoMoreAndErrorRefresh = YES;
+    [self.navigationController pushViewController:testVC animated:YES];
+}
+
+- (IBAction)autoRefreshNoMoreAndErrorAction:(id)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.isAutoFooterRefresh = YES;
+    testVC.haveNoMoreAndErrorRefresh = YES;
+    [self.navigationController pushViewController:testVC animated:YES];
+
+}
+
+- (IBAction)normalRefreshAdjustOrignContentInsetAction:(UIButton *)sender {
+    TestViewController *testVC = [[TestViewController alloc]init];
+    testVC.setOrignContentInset = YES;
+    testVC.adjustOrignContentInset = sender.tag;
+    [self.navigationController pushViewController:testVC animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

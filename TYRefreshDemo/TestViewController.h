@@ -14,4 +14,10 @@
 
 @property (nonatomic, assign) BOOL isGifRefresh;
 
+@property (nonatomic, assign) BOOL haveNoMoreAndErrorRefresh;
+
+@property (nonatomic, assign) BOOL setOrignContentInset;
+
+@property (nonatomic, assign) BOOL adjustOrignContentInset;
+
 @end
