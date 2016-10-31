@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--TYRefreshDemo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -19,50 +22,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qM3-rz-0Br">
+                                <rect key="frame" x="133.5" y="124" width="108" height="30"/>
                                 <state key="normal" title="普通上下拉刷新"/>
                                 <connections>
                                     <action selector="normalRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tl6-0S-mfO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOO-cn-cdO">
+                                <rect key="frame" x="133.5" y="187" width="108" height="30"/>
                                 <state key="normal" title="动画上下拉刷新"/>
                                 <connections>
                                     <action selector="gifRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IR1-Hw-BkN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMb-4C-s9j">
+                                <rect key="frame" x="126" y="310" width="123" height="30"/>
                                 <state key="normal" title="动画自动下拉刷新"/>
                                 <connections>
                                     <action selector="gifAutoRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTZ-AD-GMP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoE-qr-JB5">
+                                <rect key="frame" x="126" y="252" width="123" height="30"/>
                                 <state key="normal" title="普通自动下拉刷新"/>
                                 <connections>
                                     <action selector="normalAutoRefrshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Snm-80-4te"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2b-OJ-cRK">
+                                <rect key="frame" x="72.5" y="367" width="230" height="30"/>
                                 <state key="normal" title="普通上下拉刷新无数据和失败状态"/>
                                 <connections>
                                     <action selector="normalRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GXS-OR-sDh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYo-bJ-BxY">
+                                <rect key="frame" x="72.5" y="426" width="230" height="30"/>
                                 <state key="normal" title="自动上下拉刷新无数据和失败状态"/>
                                 <connections>
                                     <action selector="autoRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcT-oZ-TMp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FV0-tK-LBq">
+                                <rect key="frame" x="36.5" y="481" width="302" height="30"/>
                                 <state key="normal" title="上下拉刷新设置原始contentInset adjust YES"/>
                                 <connections>
                                     <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X2h-LG-LgJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X6-3y-m8v">
-                                <frame key="frameInset" minX="36" minY="558" width="302" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X6-3y-m8v">
+                                <rect key="frame" x="39" y="537" width="296" height="30"/>
                                 <state key="normal" title="上下拉刷新设置原始contentInset adjust NO"/>
                                 <connections>
                                     <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ed-pG-4c2"/>
@@ -75,7 +84,9 @@
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4KL-JD-iVy"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="mMb-4C-s9j" secondAttribute="bottom" constant="27" id="Da5-LZ-lCj"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EeQ-BB-pvd"/>
-                            <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="91" id="KFB-tS-dO3"/>
+                            <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="KFB-tS-dO3"/>
+                            <constraint firstItem="1X6-3y-m8v" firstAttribute="top" secondItem="FV0-tK-LBq" secondAttribute="bottom" constant="26" id="LuA-iu-js7"/>
+                            <constraint firstItem="1X6-3y-m8v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mfd-dO-w6a"/>
                             <constraint firstItem="ZYo-bJ-BxY" firstAttribute="top" secondItem="G2b-OJ-cRK" secondAttribute="bottom" constant="29" id="OmL-HT-6CA"/>
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="top" secondItem="wOO-cn-cdO" secondAttribute="bottom" constant="35" id="QFR-5s-y7k"/>
                             <constraint firstItem="mMb-4C-s9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S1U-Lg-Eid"/>
@@ -87,7 +98,7 @@
                             <constraint firstItem="ZYo-bJ-BxY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tuZ-It-4Xh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RrP-5Q-Pou"/>
+                    <navigationItem key="navigationItem" title="TYRefreshDemo" id="RrP-5Q-Pou"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

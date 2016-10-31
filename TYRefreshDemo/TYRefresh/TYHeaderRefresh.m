@@ -184,7 +184,7 @@
         // 结束动画
         return;
     }
-    NSLog(@"offsetY %.f contentTop %.f",scrollView.contentOffset.y,scrollView.contentInset.top);
+    //NSLog(@"offsetY %.f contentTop %.f",scrollView.contentOffset.y,scrollView.contentInset.top);
     BOOL isChangeContentInsetTop = self.scrollViewOrignContenInset.top != scrollView.contentInset.top;
     self.scrollViewOrignContenInset = scrollView.contentInset;
     if (isChangeContentInsetTop) {
