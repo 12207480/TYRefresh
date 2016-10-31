@@ -152,7 +152,7 @@ typedef NS_ENUM(NSUInteger, TYArrowDirection) {
     }else {
         _titleLabel.hidden = NO;
         _imageView.hidden = toState == TYRefreshStateLoading;
-        _indicatorView.hidden = !_indicatorView.isAnimating;
+        _indicatorView.hidden = !_imageView.hidden;
         _messageLabel.hidden = YES;
         _titleLabel.text = [self titleForState:toState];
     }

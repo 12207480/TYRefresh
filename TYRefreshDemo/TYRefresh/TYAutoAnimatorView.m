@@ -148,7 +148,7 @@
     }else {
         _titleLabel.hidden = NO;
         _imageView.hidden = _loadingImages.count <= 0;
-        _indicatorView.hidden = _loadingImages.count > 0;
+        _indicatorView.hidden = !_imageView.hidden;
         _messageLabel.hidden = YES;
         _titleLabel.text = [self titleForState:toState];
     }
