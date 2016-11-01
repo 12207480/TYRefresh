@@ -7,7 +7,7 @@
 //
 
 #import "TestViewController.h"
-#import "UIScrollView+TYRefresh.h"
+#import "TYRefresh.h"
 
 @interface TestViewController ()<UITableViewDelegate, UITableViewDataSource>
 
