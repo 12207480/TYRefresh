@@ -139,14 +139,14 @@
 {
     _titleLabel.text = [self titleForState:toState];
     
-    if (toState == TYRefreshStateNormal || toState == TYRefreshStateNoMore || toState == TYRefreshStateError) {
+    if (toState == TYRefreshStateNoMore || toState == TYRefreshStateError) {
         _titleLabel.hidden = YES;
         _imageView.hidden = YES;
         _indicatorView.hidden = YES;
         _messageLabel.hidden = NO;
         _messageLabel.text = [self titleForState:toState];
     }else {
-        _titleLabel.hidden = NO;
+        _titleLabel.hidden = _titleLabelHidden;
         _imageView.hidden = _loadingImages.count <= 0;
         _indicatorView.hidden = !_imageView.hidden;
         _messageLabel.hidden = YES;
@@ -217,7 +217,7 @@
         leftViewFrame = _imageView.frame;
     }else {
         CGFloat imageWidth = MAX(CGRectGetWidth(_indicatorView.frame)/2, 20);
-        _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
+        _indicatorView.center = CGPointMake( _titleLabelHidden ? CGRectGetWidth(self.frame)/2 :CGRectGetWidth(self.frame)/2 - kImageViewCenterOffsetX - imageWidth , CGRectGetHeight(self.frame)/2);
         leftViewFrame = _indicatorView.frame;
     }
 

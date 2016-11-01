@@ -11,11 +11,15 @@
 
 @interface TYAutoAnimatorView : UIView<TYRefreshAnimator>
 
+// UI
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 
 @property (nonatomic, weak, readonly) UIImageView *imageView;
 
 @property (nonatomic, weak, readonly) UIActivityIndicatorView *indicatorView;
+
+// Data
+@property (nonatomic, assign) BOOL titleLabelHidden;
 
 @property (nonatomic, assign) CGFloat imageCenterOffsetX;
 

@@ -8,12 +8,15 @@
 
 #import "TYFooterAutoRefresh.h"
 #import "TYRefreshView+Extension.h"
+#import <objc/message.h>
 
 @interface TYFooterAutoRefresh ()
 
 @property (nonatomic, assign) CGFloat beginRefreshOffset;
 
 @property (nonatomic, assign) UIEdgeInsets scrollViewAdjustContenInset;
+
+@property (nonatomic, assign) BOOL isUpdateContentSize;
 
 @end
 
@@ -23,7 +26,8 @@
 {
     if (self = [super init]) {
         _adjustOriginBottomContentInset = YES;
-        _autoRefreshWhenScrollProgress = 0;
+        _autoRefreshWhenScrollProgress = 0.0;
+        _isRefreshEndAutoHidden = YES;
     }
     return self;
 }
@@ -32,6 +36,13 @@
 {
     return [[self alloc]initWithType:TYRefreshTypeFooter animator:animator handler:handler];
 }
+
++ (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action
+{
+    return [[self alloc]initWithType:TYRefreshTypeFooter animator:animator target:target action:action];
+}
+
+#pragma mark - configure scrollView
 
 - (void)didObserverScrollView:(UIScrollView *)scrollView
 {
@@ -48,11 +59,24 @@
                             bottomContentInset,
                             CGRectGetWidth(scrollView.bounds),
                             self.refreshHeight);
+    _isUpdateContentSize = YES;
+    if (self.hidden) {
+        self.hidden = NO;
+    }
 }
 
 - (CGFloat)adjustContentInsetBottom
 {
     return _adjustOriginBottomContentInset ? self.refreshHeight : MAX(self.refreshHeight, self.scrollViewOrignContenInset.bottom);
+}
+
+- (void)setState:(TYRefreshState)state
+{
+    if (!_isUpdateContentSize && (state == TYRefreshStateNormal || state == TYRefreshStateNoMore || state == TYRefreshStateError)) {
+        _isUpdateContentSize = YES;
+        self.hidden = _isRefreshEndAutoHidden;
+    }
+    [super setState:state];
 }
 
 #pragma mark - begin refresh
@@ -80,12 +104,22 @@
     
     self.isPanGestureBegin = NO;
     self.state = TYRefreshStateLoading;
+    
     if ([self.animator respondsToSelector:@selector(refreshViewDidBeginRefresh:)]) {
         [self.animator refreshViewDidBeginRefresh:self];
     }
-    if (self.handler) {
-        self.handler();
-    }
+    
+    dispatch_delay_async_ty_refresh(0.35, ^{
+        _isUpdateContentSize = NO;
+        if (self.target && [self.target respondsToSelector:self.action]) {
+            ((void (*)(id, SEL))objc_msgSend)(self.target, self.action);
+        }
+        
+        if (self.handler) {
+            self.handler();
+        }
+    });
+    
 }
 
 // 结束刷新状态
@@ -111,6 +145,7 @@
     if ([self.animator respondsToSelector:@selector(refreshViewDidEndRefresh:)]) {
         [self.animator refreshViewDidEndRefresh:self];
     }
+    
     self.state = state;
 }
 
@@ -134,7 +169,7 @@
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
-    if (![self superScrollView] || self.hidden) {
+    if (![self superScrollView]) {
         return;
     }
     
@@ -192,6 +227,10 @@
         return;
     }
     
+    if (self.hidden) {
+        self.hidden = NO;
+    }
+    
     if (![self canPullingRefresh]) {
         return;
     }
@@ -203,7 +242,7 @@
 
 - (void)refreshViewDidChangeProgress:(CGFloat)progress
 {
-    if ([self superScrollView].isDragging && self.state == TYRefreshStateNormal) {
+    if (self.state == TYRefreshStateNormal) {
         if (progress >= _autoRefreshWhenScrollProgress) {
             [self beginRefreshing];
         }

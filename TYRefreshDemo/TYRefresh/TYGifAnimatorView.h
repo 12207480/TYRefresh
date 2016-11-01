@@ -19,8 +19,9 @@
 @property (nonatomic, weak, readonly) UIImageView *imageView;
 
 // Data
+@property (nonatomic, assign) BOOL titleLabelHidden;
 
-@property (nonatomic, assign) CGFloat loadingAnimationDuration;
+@property (nonatomic, assign) CGFloat animationDuration;
 
 @property (nonatomic, assign) CGFloat imageCenterOffsetX;
 

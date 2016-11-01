@@ -16,4 +16,6 @@
 
 + (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
 
++ (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action;
+
 @end

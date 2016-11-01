@@ -11,6 +11,7 @@
 
 @interface TYAnimatorView : UIView<TYRefreshAnimator>
 
+// UI
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 
 @property (nonatomic, weak, readonly) UILabel *messageLabel;

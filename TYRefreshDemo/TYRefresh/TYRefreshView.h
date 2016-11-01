@@ -56,6 +56,10 @@ typedef void(^TYRefresHandler)(void);
 
 @property (nonatomic, copy, readonly) TYRefresHandler handler;
 
+@property (weak, nonatomic, readonly) id target;
+
+@property (assign, nonatomic, readonly) SEL action;
+
 @property (nonatomic, strong, readonly) UIView<TYRefreshAnimator> *animator;
 
 @property (nonatomic, assign, readonly) CGFloat refreshHeight;
@@ -68,8 +72,6 @@ typedef void(^TYRefresHandler)(void);
 
 @property (nonatomic, assign) CGFloat endAnimateDuring;
 
-@property (nonatomic, assign) BOOL isAutomaticHidden; // default NO
-
 @property (nonatomic, assign) BOOL adjustOriginleftContentInset; // default NO
 
 #pragma mark - init
@@ -77,6 +79,10 @@ typedef void(^TYRefresHandler)(void);
 - (instancetype)initWithHeight:(CGFloat)height type:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
 
 - (instancetype)initWithType:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler; // height = animator's height
+
+- (instancetype)initWithHeight:(CGFloat)height type:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action;
+
+- (instancetype)initWithType:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action;
 
 #pragma mark - getter
 
@@ -104,10 +110,13 @@ typedef void(^TYRefresHandler)(void);
 
 - (void)endRefreshing;
 
+// 没有更多了
 - (void)endRefreshingWithNoMoreData;
 
+// 出错了
 - (void)endRefreshingWithError;
 
+// 重置状态
 - (void)resetNormalState;
 
 @end

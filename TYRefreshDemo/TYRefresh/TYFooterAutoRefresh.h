@@ -12,8 +12,12 @@
 
 @property (nonatomic, assign) BOOL adjustOriginBottomContentInset; // default YES
 
-@property (nonatomic,assign) CGFloat autoRefreshWhenScrollProgress;
+@property (nonatomic,assign) CGFloat autoRefreshWhenScrollProgress; // default 1.0
+
+@property (nonatomic, assign) BOOL isRefreshEndAutoHidden; // default YES
 
 + (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
+
++ (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action;
 
 @end

@@ -35,7 +35,7 @@
         
         _titleLabelLeftEdging = kTitleLabelLeftEdging;
         _imageCenterOffsetX = kImageViewCenterOffsetX;
-        _loadingAnimationDuration = 0.25;
+        _animationDuration = 0.25;
         
         [self addTitleLabel];
         
@@ -167,7 +167,7 @@
         _messageLabel.hidden = NO;
         _messageLabel.text = [self titleForState:toState];
     }else {
-        _titleLabel.hidden = NO;
+        _titleLabel.hidden = _titleLabelHidden;
         _imageView.hidden = NO;
         _messageLabel.hidden = YES;
         _titleLabel.text = [self titleForState:toState];
@@ -187,7 +187,7 @@
                 _imageView.image = loadingImages.firstObject;
             }else {
                 _imageView.animationImages = loadingImages;
-                _imageView.animationDuration = _loadingAnimationDuration;
+                _imageView.animationDuration = _animationDuration;
             }
         }
             break;
@@ -229,7 +229,7 @@
         return;
     }
     _imageView.frame = CGRectMake(0, 0, gifImage.size.width, gifImage.size.height);
-    CGFloat imageCenterX = _titleLabel.hidden ? CGRectGetWidth(self.frame)/2 : CGRectGetWidth(self.frame)/2 - _imageCenterOffsetX - gifImage.size.width/2 ;
+    CGFloat imageCenterX = _titleLabelHidden ? CGRectGetWidth(self.frame)/2 : CGRectGetWidth(self.frame)/2 - _imageCenterOffsetX - gifImage.size.width/2 ;
     _imageView.center = CGPointMake(imageCenterX , CGRectGetHeight(self.frame)/2);
     
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame)+_titleLabelLeftEdging, 0, CGRectGetWidth(self.frame) - CGRectGetMaxX(_imageView.frame) - _titleLabelLeftEdging , CGRectGetHeight(self.frame));

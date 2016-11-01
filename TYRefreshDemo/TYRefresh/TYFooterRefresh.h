@@ -12,6 +12,10 @@
 
 @property (nonatomic, assign) BOOL adjustOriginBottomContentInset; // default YES
 
+@property (nonatomic, assign) BOOL isRefreshEndAutoHidden; // default YES
+
 + (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator handler:(TYRefresHandler)handler;
+
++ (instancetype)footerWithAnimator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action;
 
 @end

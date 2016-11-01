@@ -8,6 +8,7 @@
 
 #import "TYHeaderRefresh.h"
 #import "TYRefreshView+Extension.h"
+#import <objc/message.h>
 
 @interface TYHeaderRefresh ()
 
@@ -29,6 +30,10 @@
     return [[self alloc]initWithType:TYRefreshTypeHeader animator:animator handler:handler];
 }
 
++ (instancetype)headerWithAnimator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action
+{
+    return [[self alloc]initWithType:TYRefreshTypeHeader animator:animator target:target action:action];
+}
 
 #pragma mark - configure scrollView
 
@@ -99,6 +104,11 @@
         if ([self.animator respondsToSelector:@selector(refreshViewDidBeginRefresh:)]) {
             [self.animator refreshViewDidBeginRefresh:self];
         }
+        
+        if (self.target && [self.target respondsToSelector:self.action]) {
+            ((void (*)(id, SEL))objc_msgSend)(self.target, self.action);
+        }
+        
         if (self.handler) {
             self.handler();
         }
@@ -156,7 +166,7 @@
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
-    if (![self superScrollView] || self.hidden) {
+    if (![self superScrollView]) {
         return;
     }
     

@@ -47,6 +47,27 @@ static char kTYRefreshContentKey;
     return [self initWithHeight:CGRectGetHeight(animator.frame) > 0 ? CGRectGetHeight(animator.frame) : kRefreshViewHeight type:type animator:animator handler:handler];
 }
 
+- (instancetype)initWithHeight:(CGFloat)height type:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action
+{
+    if (self = [self init]) {
+        _refreshHeight = height;
+        _type = type;
+        _animator = animator;
+        _target = target;
+        _action = action;
+        
+        [self addAnimatorView];
+    }
+    return self;
+}
+
+
+- (instancetype)initWithType:(TYRefreshType)type animator:(UIView<TYRefreshAnimator> *)animator target:(id)target action:(SEL)action
+{
+    return [self initWithHeight:CGRectGetHeight(animator.frame) > 0 ? CGRectGetHeight(animator.frame) : kRefreshViewHeight type:type animator:animator target:target action:action];
+}
+
+
 #pragma mark - getter
 
 - (UIScrollView *)superScrollView
@@ -66,10 +87,6 @@ static char kTYRefreshContentKey;
 
 - (void)setState:(TYRefreshState)state
 {
-    if (state == TYRefreshStateNormal) {
-        self.hidden = _isAutomaticHidden;
-    }
-
     if (_state != state) {
         TYRefreshState oldState = _state;
         _state = state;
