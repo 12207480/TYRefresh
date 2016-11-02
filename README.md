@@ -2,7 +2,7 @@
 a simple way to use pull-to-refresh ,easy way to customize loading animation.<br>
 简单，强大的上下拉刷新，支持自动上拉加载，支持自定义加载动画。
 
-更详细的使用请看[LovePlayNews](https://github.com/12207480/LovePlayNews)项目
+更详细的使用请看demo 和 [LovePlayNews](https://github.com/12207480/LovePlayNews)项目
 
 ## Requirements
 * Xcode 7 or higher
