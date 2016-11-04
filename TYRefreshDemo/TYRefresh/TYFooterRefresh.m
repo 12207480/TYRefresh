@@ -142,12 +142,6 @@
     });
 }
 
-- (void)setScrollViewOrignContenInset:(UIEdgeInsets)scrollViewOrignContenInset
-{
-    [super setScrollViewOrignContenInset:scrollViewOrignContenInset];
-    
-}
-
 - (void)endRefreshingAnimationOnScrollView:(UIScrollView *)scrollView state:(TYRefreshState)state
 {
     [UIView animateWithDuration:self.endAnimateDuring animations:^{
