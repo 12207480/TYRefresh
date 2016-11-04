@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) CGFloat beginRefreshOffset;
 @property (nonatomic, assign) BOOL isUpdateContentSize;
+@property (nonatomic, assign) BOOL ignoreChangeContentInset;
 
 @end
 
@@ -89,7 +90,7 @@
         self.hidden = NO;
     }
     
-    dispatch_main_async_safe_ty_refresh(^{
+    dispatch_async(dispatch_get_main_queue(),^{
         [self beginRefreshingAnimationOnScrollView:scrollView];
     });
 }
@@ -102,6 +103,7 @@
         CGFloat normalRefreshBottom = self.scrollViewOrignContenInset.bottom + CGRectGetHeight(self.frame);
         UIEdgeInsets contentInset = scrollView.contentInset;
         contentInset.bottom = beginRefreshOffset >= 0 ? normalRefreshBottom : normalRefreshBottom-beginRefreshOffset;
+        _ignoreChangeContentInset = YES;
         scrollView.contentInset = contentInset;
         
     } completion:^(BOOL finished) {
@@ -135,9 +137,15 @@
     self.isRefreshing = NO;
     self.isEndRefreshAnimating = YES;
     
-    dispatch_main_async_safe_ty_refresh(^{
+    dispatch_async(dispatch_get_main_queue(),^{
         [self endRefreshingAnimationOnScrollView:scrollView state:state];
     });
+}
+
+- (void)setScrollViewOrignContenInset:(UIEdgeInsets)scrollViewOrignContenInset
+{
+    [super setScrollViewOrignContenInset:scrollViewOrignContenInset];
+    
 }
 
 - (void)endRefreshingAnimationOnScrollView:(UIScrollView *)scrollView state:(TYRefreshState)state
@@ -145,6 +153,7 @@
     [UIView animateWithDuration:self.endAnimateDuring animations:^{
         UIEdgeInsets contentInset = scrollView.contentInset;
         contentInset.bottom = self.scrollViewOrignContenInset.bottom;
+        _ignoreChangeContentInset = NO;
         scrollView.contentInset = contentInset;
     } completion:^(BOOL finished) {
         self.isEndRefreshAnimating = NO;
@@ -194,7 +203,9 @@
         return;
     }
     
-    self.scrollViewOrignContenInset = scrollView.contentInset;
+    if (!_ignoreChangeContentInset) {
+        self.scrollViewOrignContenInset = scrollView.contentInset;
+    }
     
     if (scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.isPanGestureBegin = YES;

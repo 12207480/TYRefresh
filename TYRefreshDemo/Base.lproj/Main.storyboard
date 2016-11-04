@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -77,13 +77,24 @@
                                     <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ed-pG-4c2"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g2u-pl-5I0">
+                                <rect key="frame" x="269" y="87" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="collectionView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouv-RK-6i0">
+                                <rect key="frame" x="132" y="92" width="110.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1WR-HO-pXM"/>
+                            <constraint firstItem="g2u-pl-5I0" firstAttribute="leading" secondItem="Ouv-RK-6i0" secondAttribute="trailing" constant="26.5" id="2k3-lK-P8q"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4KL-JD-iVy"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="mMb-4C-s9j" secondAttribute="bottom" constant="27" id="Da5-LZ-lCj"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EeQ-BB-pvd"/>
+                            <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="g2u-pl-5I0" secondAttribute="bottom" constant="249" id="Fe8-2G-Fhv"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="KFB-tS-dO3"/>
                             <constraint firstItem="1X6-3y-m8v" firstAttribute="top" secondItem="FV0-tK-LBq" secondAttribute="bottom" constant="26" id="LuA-iu-js7"/>
                             <constraint firstItem="1X6-3y-m8v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mfd-dO-w6a"/>
@@ -91,6 +102,8 @@
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="top" secondItem="wOO-cn-cdO" secondAttribute="bottom" constant="35" id="QFR-5s-y7k"/>
                             <constraint firstItem="mMb-4C-s9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S1U-Lg-Eid"/>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="top" secondItem="qM3-rz-0Br" secondAttribute="bottom" constant="33" id="XLS-Go-7by"/>
+                            <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="Ouv-RK-6i0" secondAttribute="bottom" constant="11" id="XsT-nc-gJP"/>
+                            <constraint firstItem="Ouv-RK-6i0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fzM-Cx-JhR"/>
                             <constraint firstItem="FV0-tK-LBq" firstAttribute="top" secondItem="ZYo-bJ-BxY" secondAttribute="bottom" constant="25" id="hER-2S-hr1"/>
                             <constraint firstItem="FV0-tK-LBq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iKH-Vs-2Ny"/>
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nWb-Af-DtW"/>
@@ -99,6 +112,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TYRefreshDemo" id="RrP-5Q-Pou"/>
+                    <connections>
+                        <outlet property="collectionViewSwitch" destination="g2u-pl-5I0" id="lvB-Le-usn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
