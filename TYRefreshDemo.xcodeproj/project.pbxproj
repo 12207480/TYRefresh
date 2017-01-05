@@ -51,7 +51,7 @@
 		2B3FA1CF1DAB88410019EF83 /* UIScrollView+TYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TYRefresh.h"; sourceTree = "<group>"; };
 		2B3FA1D01DAB88410019EF83 /* UIScrollView+TYRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TYRefresh.m"; sourceTree = "<group>"; };
 		2B4074761DC8521B0068E528 /* TYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYRefresh.h; sourceTree = "<group>"; };
-		2B566CFC1DB61EAF00DA1D1E /* TYRefreshView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TYRefreshView+Extension.h"; sourceTree = "<group>"; };
+		2B566CFC1DB61EAF00DA1D1E /* TYRefreshView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TYRefreshView+Private.h"; sourceTree = "<group>"; };
 		2B566CFF1DB62DC600DA1D1E /* TYFooterAutoRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYFooterAutoRefresh.h; sourceTree = "<group>"; };
 		2B566D001DB62DC600DA1D1E /* TYFooterAutoRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYFooterAutoRefresh.m; sourceTree = "<group>"; };
 		2B58E72C1DADE04200393C3B /* TYAnimatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAnimatorView.h; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			children = (
 				2B379B031DAB71FE00F5E4EF /* TYRefreshView.h */,
 				2B379B041DAB71FE00F5E4EF /* TYRefreshView.m */,
-				2B566CFC1DB61EAF00DA1D1E /* TYRefreshView+Extension.h */,
+				2B566CFC1DB61EAF00DA1D1E /* TYRefreshView+Private.h */,
 				2B3974301DB0C3F700938B26 /* TYHeaderRefresh.h */,
 				2B3974311DB0C3F700938B26 /* TYHeaderRefresh.m */,
 				2B3974331DB0C40B00938B26 /* TYFooterRefresh.h */,

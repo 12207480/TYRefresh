@@ -7,7 +7,7 @@
 //
 
 #import "TYHeaderRefresh.h"
-#import "TYRefreshView+Extension.h"
+#import "TYRefreshView+Private.h"
 #import <objc/message.h>
 
 @interface TYHeaderRefresh ()
