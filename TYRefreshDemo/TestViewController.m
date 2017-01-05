@@ -36,7 +36,13 @@
         [self configureNormalRefesh];
     }
     
-    [self loadData];
+    if (!_isAutoBeginRefresh) {
+        [self loadData];
+    }else if (_isCollectionView) {
+        [_collectionView.ty_refreshHeader beginRefreshing];
+    }else {
+        [_tableView.ty_refreshHeader beginRefreshing];
+    }
 }
 
 - (void)viewWillLayoutSubviews
@@ -110,7 +116,7 @@
     TYHeaderRefresh *headerRefresh = [TYHeaderRefresh headerWithAnimator:_isGifRefresh ?[self gifAnimatorView] : [TYAnimatorView new]  handler:^{
         NSLog(@"下拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            BOOL errorState = _haveNoMoreAndErrorRefresh && weakSelf.testData.count > 20;
+            BOOL errorState = weakSelf.haveNoMoreAndErrorRefresh && weakSelf.testData.count > 20;
             [weakSelf loadData];
 
             if (weakSelf.collectionView) {
@@ -146,7 +152,7 @@
             if (weakSelf.collectionView) {
                 [weakSelf.collectionView reloadData];
                 [weakSelf.collectionView.ty_refreshHeader resetNormalState];
-                if (weakSelf.testData.count > 30 && _haveNoMoreAndErrorRefresh) {
+                if (weakSelf.testData.count > 30 && weakSelf.haveNoMoreAndErrorRefresh) {
                     [weakSelf.collectionView.ty_refreshFooter endRefreshingWithNoMoreData];
                 }else {
                     [weakSelf.collectionView.ty_refreshFooter endRefreshing];
@@ -154,7 +160,7 @@
             }else {
                 [weakSelf.tableView reloadData];
                 [weakSelf.tableView.ty_refreshHeader resetNormalState];
-                if (weakSelf.testData.count > 20 && _haveNoMoreAndErrorRefresh) {
+                if (weakSelf.testData.count > 20 && weakSelf.haveNoMoreAndErrorRefresh) {
                     [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
                 }else {
                     [weakSelf.tableView.ty_refreshFooter endRefreshing];
@@ -205,7 +211,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadData];
             
-            if (_isCollectionView) {
+            if (weakSelf.isCollectionView) {
                 [weakSelf.collectionView reloadData];
                 [weakSelf.collectionView.ty_refreshFooter resetNormalState];
                 [weakSelf.collectionView.ty_refreshHeader endRefreshing];
@@ -227,9 +233,9 @@
         NSLog(@"上拉刷新");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf loadMoreData];
-            if (_isCollectionView) {
+            if (weakSelf.isCollectionView) {
                 [weakSelf.collectionView reloadData];
-                if (weakSelf.testData.count > 30 && _haveNoMoreAndErrorRefresh) {
+                if (weakSelf.testData.count > 30 && weakSelf.haveNoMoreAndErrorRefresh) {
                     [weakSelf.collectionView.ty_refreshFooter endRefreshingWithNoMoreData];
                 }else {
                     [weakSelf.collectionView.ty_refreshFooter endRefreshing];
@@ -240,7 +246,7 @@
                 }
             }else {
                 [weakSelf.tableView reloadData];
-                if (weakSelf.testData.count > 20 && _haveNoMoreAndErrorRefresh) {
+                if (weakSelf.testData.count > 20 && weakSelf.haveNoMoreAndErrorRefresh) {
                     [weakSelf.tableView.ty_refreshFooter endRefreshingWithNoMoreData];
                 }else {
                     [weakSelf.tableView.ty_refreshFooter endRefreshing];
@@ -319,14 +325,9 @@
     return cell;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
 }
-*/
 
 @end

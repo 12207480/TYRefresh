@@ -12,6 +12,8 @@
 
 @property (nonatomic, assign) BOOL isCollectionView;
 
+@property (nonatomic, assign) BOOL isAutoBeginRefresh;
+
 @property (nonatomic, assign) BOOL isAutoFooterRefresh;
 
 @property (nonatomic, assign) BOOL isGifRefresh;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JhZ-ru-dcq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,66 +22,75 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qM3-rz-0Br">
-                                <rect key="frame" x="133.5" y="124" width="108" height="30"/>
+                                <rect key="frame" x="133.5" y="164" width="108" height="30"/>
                                 <state key="normal" title="普通上下拉刷新"/>
                                 <connections>
                                     <action selector="normalRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tl6-0S-mfO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOO-cn-cdO">
-                                <rect key="frame" x="133.5" y="187" width="108" height="30"/>
+                                <rect key="frame" x="133.5" y="227" width="108" height="30"/>
                                 <state key="normal" title="动画上下拉刷新"/>
                                 <connections>
                                     <action selector="gifRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IR1-Hw-BkN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMb-4C-s9j">
-                                <rect key="frame" x="126" y="310" width="123" height="30"/>
+                                <rect key="frame" x="126" y="350" width="123" height="30"/>
                                 <state key="normal" title="动画自动下拉刷新"/>
                                 <connections>
                                     <action selector="gifAutoRefreshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTZ-AD-GMP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoE-qr-JB5">
-                                <rect key="frame" x="126" y="252" width="123" height="30"/>
+                                <rect key="frame" x="126" y="292" width="123" height="30"/>
                                 <state key="normal" title="普通自动下拉刷新"/>
                                 <connections>
                                     <action selector="normalAutoRefrshAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Snm-80-4te"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2b-OJ-cRK">
-                                <rect key="frame" x="72.5" y="367" width="230" height="30"/>
+                                <rect key="frame" x="72.5" y="407" width="230" height="30"/>
                                 <state key="normal" title="普通上下拉刷新无数据和失败状态"/>
                                 <connections>
                                     <action selector="normalRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GXS-OR-sDh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYo-bJ-BxY">
-                                <rect key="frame" x="72.5" y="426" width="230" height="30"/>
+                                <rect key="frame" x="72.5" y="466" width="230" height="30"/>
                                 <state key="normal" title="自动上下拉刷新无数据和失败状态"/>
                                 <connections>
                                     <action selector="autoRefreshNoMoreAndErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcT-oZ-TMp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FV0-tK-LBq">
-                                <rect key="frame" x="36.5" y="481" width="302" height="30"/>
+                                <rect key="frame" x="36.5" y="521" width="302" height="30"/>
                                 <state key="normal" title="上下拉刷新设置原始contentInset adjust YES"/>
                                 <connections>
                                     <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X2h-LG-LgJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X6-3y-m8v">
-                                <rect key="frame" x="39" y="537" width="296" height="30"/>
+                                <rect key="frame" x="39" y="577" width="296" height="30"/>
                                 <state key="normal" title="上下拉刷新设置原始contentInset adjust NO"/>
                                 <connections>
                                     <action selector="normalRefreshAdjustOrignContentInsetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ed-pG-4c2"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g2u-pl-5I0">
-                                <rect key="frame" x="269" y="87" width="51" height="31"/>
+                                <rect key="frame" x="269" y="127" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="collectionView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouv-RK-6i0">
-                                <rect key="frame" x="132" y="92" width="110.5" height="21"/>
+                                <rect key="frame" x="132" y="132" width="110.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rlq-7b-Pgk">
+                                <rect key="frame" x="284" y="88" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="auto beginRefresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpI-um-56G">
+                                <rect key="frame" x="117.5" y="93" width="140" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -92,17 +101,21 @@
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1WR-HO-pXM"/>
                             <constraint firstItem="g2u-pl-5I0" firstAttribute="leading" secondItem="Ouv-RK-6i0" secondAttribute="trailing" constant="26.5" id="2k3-lK-P8q"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4KL-JD-iVy"/>
+                            <constraint firstItem="VpI-um-56G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9cI-ac-6v0"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="mMb-4C-s9j" secondAttribute="bottom" constant="27" id="Da5-LZ-lCj"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EeQ-BB-pvd"/>
                             <constraint firstItem="G2b-OJ-cRK" firstAttribute="top" secondItem="g2u-pl-5I0" secondAttribute="bottom" constant="249" id="Fe8-2G-Fhv"/>
-                            <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="KFB-tS-dO3"/>
+                            <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="KFB-tS-dO3"/>
                             <constraint firstItem="1X6-3y-m8v" firstAttribute="top" secondItem="FV0-tK-LBq" secondAttribute="bottom" constant="26" id="LuA-iu-js7"/>
+                            <constraint firstItem="Ouv-RK-6i0" firstAttribute="top" secondItem="VpI-um-56G" secondAttribute="bottom" constant="18" id="M5t-FE-wpu"/>
                             <constraint firstItem="1X6-3y-m8v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mfd-dO-w6a"/>
                             <constraint firstItem="ZYo-bJ-BxY" firstAttribute="top" secondItem="G2b-OJ-cRK" secondAttribute="bottom" constant="29" id="OmL-HT-6CA"/>
+                            <constraint firstItem="g2u-pl-5I0" firstAttribute="top" secondItem="rlq-7b-Pgk" secondAttribute="bottom" constant="8" id="Onc-hZ-Rv6"/>
                             <constraint firstItem="RoE-qr-JB5" firstAttribute="top" secondItem="wOO-cn-cdO" secondAttribute="bottom" constant="35" id="QFR-5s-y7k"/>
                             <constraint firstItem="mMb-4C-s9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S1U-Lg-Eid"/>
                             <constraint firstItem="wOO-cn-cdO" firstAttribute="top" secondItem="qM3-rz-0Br" secondAttribute="bottom" constant="33" id="XLS-Go-7by"/>
                             <constraint firstItem="qM3-rz-0Br" firstAttribute="top" secondItem="Ouv-RK-6i0" secondAttribute="bottom" constant="11" id="XsT-nc-gJP"/>
+                            <constraint firstItem="rlq-7b-Pgk" firstAttribute="leading" secondItem="VpI-um-56G" secondAttribute="trailing" constant="26.5" id="aCN-b3-RER"/>
                             <constraint firstItem="Ouv-RK-6i0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fzM-Cx-JhR"/>
                             <constraint firstItem="FV0-tK-LBq" firstAttribute="top" secondItem="ZYo-bJ-BxY" secondAttribute="bottom" constant="25" id="hER-2S-hr1"/>
                             <constraint firstItem="FV0-tK-LBq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iKH-Vs-2Ny"/>
@@ -113,6 +126,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="TYRefreshDemo" id="RrP-5Q-Pou"/>
                     <connections>
+                        <outlet property="autoBeginRefreshSwitch" destination="rlq-7b-Pgk" id="TEW-zy-dxR"/>
                         <outlet property="collectionViewSwitch" destination="g2u-pl-5I0" id="lvB-Le-usn"/>
                     </connections>
                 </viewController>

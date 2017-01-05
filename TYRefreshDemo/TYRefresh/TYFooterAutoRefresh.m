@@ -28,6 +28,7 @@
         _adjustOriginBottomContentInset = YES;
         _autoRefreshWhenScrollProgress = 0.0;
         _isRefreshEndAutoHidden = YES;
+        _isRefreshHiddenIfNoData = YES;
     }
     return self;
 }
@@ -59,8 +60,12 @@
                             bottomContentInset,
                             CGRectGetWidth(scrollView.bounds),
                             self.refreshHeight);
+    
     _isUpdateContentSize = YES;
-    if (self.hidden) {
+    
+    if (_isRefreshHiddenIfNoData) {
+        self.hidden = ![self haveDatasIfIsTableViewOrCollectionView:scrollView];
+    }else if (self.hidden) {
         self.hidden = NO;
     }
 }
@@ -68,6 +73,28 @@
 - (CGFloat)adjustContentInsetBottom
 {
     return _adjustOriginBottomContentInset ? self.refreshHeight : MAX(self.refreshHeight, self.scrollViewOrignContenInset.bottom);
+}
+
+- (BOOL)haveDatasIfIsTableViewOrCollectionView:(UIScrollView *)scrollView
+{
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)scrollView;
+        for (NSInteger section = 0; section < tableView.numberOfSections; section++) {
+            if ([tableView numberOfRowsInSection:section] > 0) {
+                return YES;
+            }
+        }
+    } else if ([scrollView isKindOfClass:[UICollectionView class]]) {
+        UICollectionView *collectionView = (UICollectionView *)scrollView;
+        for (NSInteger section = 0; section < collectionView.numberOfSections; section++) {
+            if ([collectionView numberOfItemsInSection:section] > 0) {
+                return YES;
+            }
+        }
+    }else {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)setState:(TYRefreshState)state
